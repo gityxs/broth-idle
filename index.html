@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title> Brothidle </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="keywords" content="Brothidle, idle-game, idle game, management" />
+<link rel="stylesheet" media="screen" type="text/css" title="Brothidle" href="Brothidle - Presentation.css" />
+</script>
+</head>
+<script type="text/javascript" src="variables globales.js"></script>
+<script type="text/javascript" src="full_library.js"></script>
+<div id="loading_screen">
+	<p>Loading file 1/10...</p>
+	<audio id="god_world_music" loop>
+		<source src="Musics/god_world.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 2/10...</p>
+	<audio id="workers_music" loop>
+		<source src="Musics/workers.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 3/10...</p>
+	<audio id="brothels_music" loop>
+		<source src="Musics/brothels.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 4/10...</p>
+	<audio id="factories_music" loop>
+		<source src="Musics/factories.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 5/10...</p>
+	<audio id="temple_music" loop>
+		<source src="Musics/temple.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 6/10...</p>
+	<audio id="laboratory_music" loop>
+		<source src="Musics/laboratory.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 7/10...</p>
+	<audio id="schools_music" loop>
+		<source src="Musics/schools.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 8/10...</p>
+	<audio id="lobby_music" loop>
+		<source src="Musics/lobby.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 9/10...</p>
+	<audio id="space_music" loop>
+		<source src="Musics/space.mp3" type="audio/mp3">
+	</audio>
+	<p>Loading file 10/10...</p>
+	<audio id="mute_music">
+		<source src="" type="audio/mp3">
+	</audio>
+</div>
+<script>
+document.getElementById("loading_screen").style.display = "none";
+function remove_music_on_click() {
+	document.removeEventListener('click', launch_music);
+	document.removeEventListener('click', remove_music_on_click);
+}
+document.addEventListener('click', launch_music); // start the music when the user clicks anywhere
+document.addEventListener('click', remove_music_on_click); // once the user has clicked and launched the music, remove the event listeners, they have no purpose anymore
+
+default_variables(); // initialize all the variables by calling the 'variables globales.js' file
+read_local_storage(); // read cookies
+concentrated_descriptions(); // modify the descriptions of the talents Concentrated parts using scripts
+window.auto_save = setInterval("save_or_delete_all_data()", 2000); // save the game in a cookie every 2 seconds
+corrections(); // launch this function to correct some version problems
+completion_fundamental_talents_encyclopedia();
+completion_style_talents_encyclopedia();
+completion_god_deals_encyclopedia();
+completion_SCAMs_encyclopedia();
+var time_of_connection = timestamp(); // #stats
+var time_spent_at_connection = time_spent; // #stats
+time_spent_this_session = 0; // #stats
+total_upgrades_multiplicator_workers = multiplicator_upgrades_workers(); // necessary before launching the time_runner()
+// window.runner = setInterval("time_runner()", 50); NOTE: the script is run at the end of the page
+</script>
+
+<body>
+	<script src="chs.js"></script>
+	<script src="core.js"></script>
+	<div id="corps_intro"> <!-- START - Intro Frame -->
+		<h1 id="title_intro">Brothidle</h1>
+		<p id="text_intro">You are a Godess. Some would argue that's a pretty good start in life.
+		<br /><br />A thing to know about Gods, is that there are 3 categories of Gods: there are the cool Gods, the okay Gods, and the crappy Gods.
+		<br />Guess which category you belong to...
+		<br /><br />So there you are, being bullied  and humiliated by the other Gods, living painfully your immortal life. You don't even seem to have any power, any Godish ability. You spend your time messing around, desperately trying to discover yourself some hidden aptitude. Maybe if you try hard enough, you will achieve something?
+		<br /><br />Now player, be warned: your quest will start harshly. This game isn't nice. You will suffer. You will rage. Progression will be tedious, mistakes will be punished, you may even feel like there is no way to progress. Feel free to give up. Many will. If you do not though, if you are brave enough to endure the frustration and go through the trial... A very peculiar adventure will be there for you to live!
+		<br />Good luck :]
+		<br /><br />
+		
+		<button id="button_intro" onclick="display_front_screen('main_frame', LIST_main_screens)"> A story? Really? I don't give a damn... Let me play the game! </button>
+		<button id="initial_mute_button" onclick="change_music(); toggle_initial_mute_button();">&#x1F507;</button>
+		</p>
+		<span id='warning'><i>This game works better with Google Chrome.</i></span>
+		<span id='version'><i>Version: 0.19.0.1</i></span>
+	</div> <!-- END - Intro Frame -->
+	
+	<script>if (tutorial_step < 2) {document.getElementById("initial_mute_button").style.display = "initial";}</script>
+	
+	<div id="corps_transition_human_world"> <!-- START - Transition frame to human world -->
+
+		<h1 id="title_transition_human_world">Human World</h1>
+		<p id="text_transition_human_world"><br />You knew it! You DO have powers! With emotion flowing through your chest, you contemplate your creation. 
+		Of course, the prostitute you gave life to seems a bit rickety and wonky. 
+		Maybe you didn't organize the parts the right way? Or maybe you should have used some parts several times?
+		<br /><br /><br />It doesn't matter. You worked hard, and you're proud of yourself!
+		<br />While you have a rest, admiring your completed work, your mind starts wandering. You think about your position among the Gods. You think about this bully, who made your work so slow and painful.
+		<br /><br />This is now. Your time has come.
+		<br /><br /><br />You are the Godess of Prostitution, and soon, everybody shall know and respect your name!
+		<br /><br /><br />
+		
+		<button id="button_transition_human_world" onclick="display_front_screen('main_frame', LIST_main_screens)"> Let's rule the world! </button>
+		</p>
+		<p id="note_transition_human_world"> <i></i></p>
+	</div> <!-- END - Transition frame to human world -->
+	
+	<div id="corps_end_screen"> <!-- START - Game over frame -->
+
+		<h1 id="title_end">Congratulations!</h1>
+		<p id="text_end"><br />All journeys have an end.<br />To the notable exception of the ones which do not, of course. But this one does.
+		<br /><br />With grit and patience, you have reached the end, and for this, I respectfully bow to you.
+		<br /><br />Despite probably frustrating on occasions, I hope this strange trip gave you a little bit of joice and happiness.
+		<br />
+		<span id="happy_god_of_energy_ending"><br />Oh, and by the way: you and the God of Energy live happily ever after. Cheers!</span>
+		<br /><br /><br />Well. This is it.
+		<br /><br />Farewell, and be happy!
+		<br /><br /><br /><br />
+		
+		<button id="button_end" onclick="display_front_screen('main_frame', LIST_main_screens)"> Let's rest! </button>
+		</p>
+	</div> <!-- END - Game over frame -->	
+	<script>if (god_of_energy_happy) {document.getElementById("happy_god_of_energy_ending").style.display = "initial";}</script>
+		
+
+	<div id="main_frame"> <!-- START - Main Frame -->
+		<div id="frame_credits" class="frame_alert_box"> <!-- The white-transparent filter -->
+			<div id="confirm_box_credits" class="alert_box"></div> <!-- displayed only when you click on the "Welcome offer" button -->
+		</div>
+		<div id="frame_welcome_offer" class="frame_alert_box"> <!-- The white-transparent filter -->
+			<div id="confirm_box_welcome_offer" class="alert_box"></div> <!-- displayed only when you click on the "Welcome offer" button -->
+		</div>
+		<div id="frame_ruin_everything" class="frame_alert_box"> <!-- The white-transparent filter -->
+			<div id="confirm_box_ruin_everything" class="alert_box"></div> <!-- displayed only when you click on the Ruin Everything button -->
+		</div>
+		<div id="frame_total_reset" class="frame_alert_box">
+			<div class="alert_box">
+				<br /><br />This will wipe your progress, FOREVER! You will have to start over from scratch. Are you sure?<br /><br /><br /><br /><br />
+				<button class="wannabe_activated_button" onclick="save_or_delete_all_data('delete'); confirm_delete_all_data(true)">Confirm</button>&nbsp;&nbsp;&nbsp;&nbsp;
+				<button onclick="confirm_delete_all_data(true)">Cancel</button>
+			</div>
+		</div>
+		<br />
+		<span id="discount_skins_main_button" class="tooltip" onmousedown="display_toggle_skins()"><span class="RIGHT_tooltip_text">Enable or disable the buttons to change menu skins.</span></span>
+		<script>if (DICT_God_of_Extortion['Discount skins'][3] > 0 && DICT_Deals['4th wall'][2] == 1) {document.getElementById("discount_skins_main_button").style.display = 'initial';}</script>
+		<span id="fundamental_energy_value" class="tooltip"></span><script>display_fundamental_energy()</script>
+		<button id="transfer_button" class="tooltip locked_button" onclick="transfer()">><span class="DOWN_tooltip_text">Transfer 10 % of your Fundamental Energy into a dollars multiplicator.<br /><br />The sort of hourglass of time must be at turn 0 to transfer.<br /><br />Current multiplicator: X&nbsp;<span id="multiplicator_transfer"></span></span></button>
+		<script>display_transfer_button(true); transfer(true)</script>
+		<span id="dollars_value" class="tooltip"></span> <!-- function display_dollars() executed later in the page -->
+		<span id="style_value" class="tooltip"></span><script>display_style_points()</script>
+		<span id="prostitutes_value" class="tooltip"></span><script>display_prostitutes()</script>
+		<span id="trained_prostitutes_value" class="tooltip"></span><script>display_trained_prostitutes()</script>
+		<div id="ruin_everything"><button id="ruin_everything_button" class='orange_button tooltip' onclick="confirm_ruin_everything()">Ruin everything<span id='content_tooltip_ruin_everything' class='DOWN_tooltip_text'></span></button></div>
+		<!-- content_tooltip_ruin_everything: displayed in the display_dollars() function -->
+		<div id="auto_next_turn"><button class="locked_button tooltip">Auto<span class="LEFT_tooltip_text">Locked</span></button></div>
+		<div id="next_turn"><button class="locked_button tooltip" style="letter-spacing:1px">Next tu<span id="letter_spacing2px">rn</span><span id="TOOLTIP_next_turn" class="LEFT_tooltip_text">Locked</span></button></div>
+		<script> 
+			if (tutorial_step < 4) {
+				if (energy_building_DYNAMIC[0][6] != "inactive") {auto_next_turn()} // launch the autoturn if the first construction is initialized or ongoing
+			}
+			else {
+				document.getElementById("auto_next_turn").innerHTML = "<button class='tooltip' onclick='auto_next_turn()'> Auto <span class='LEFT_tooltip_text'>Validate automatically 1 turn per second</span></button>";
+				document.getElementById("next_turn").innerHTML = "<button class='tooltip' onclick='next_turn()' style='letter-spacing:1px'>Next tu<span id='letter_spacing2px'>rn</span><span id='TOOLTIP_next_turn' class='LEFT_tooltip_text'>Validate the turn</span></button>";				
+			}
+		</script>
+		<div id="restartor"><button id="restartor_button" class="tooltip" onclick="toggle_restartor()"><span id="restartor_text">&#x1f5d8;</span><span class="DOWN_tooltip_text tooltip_deal">Restartor:<br /><br />If activated, the restartor will re-active the Auto button after the visit of the bully God.</span></button></div>
+		<div id="semiauto"><button id="semiauto_button" class="tooltip" onclick="toggle_semiauto()"><span id="semiauto_text">&#128678;</span><span class="DOWN_tooltip_text tooltip_deal">Semi-auto:<br /><br />If activated, the Semi-auto will activate the Auto button when a construction or a conversion is ongoing, and disable it when there is no activity ongoing.</span></button></div>
+		<div id="accelerator"><button id="accelerator_button" class="tooltip" onclick="FUNC_speeder('accelerator')"><span id="accelerator_text">&#x1F5F2;</span><span class="DOWN_tooltip_text tooltip_deal">Accelerator:<br /><br />If activated, the autoturn will run at 10 turns per second.</span></button></div>
+		<div id="autoverheat"><button id="autoverheat_button" class="tooltip" onclick="FUNC_speeder('autoverheat')"><span id="autoverheat_text">&#x1F5F2;&#x1F5F2;</span><span class="DOWN_tooltip_text tooltip_deal">Autoverheat:<br /><br />If activated, the autoturn will run at 100 turns per second.</span></button></div>
+		<script>
+				if (DICT_fundamental_talents['Frenzy'][3] == 0) { // if you don't have the talent, don't display the button
+					document.getElementById("restartor").style.display = "none";
+				}
+				else {
+					toggle_restartor(); // disable it
+					toggle_restartor(); // re-enable it with the right display (green if activated)
+				}
+				
+				toggle_semiauto(true);
+				toggle_semiauto(true);
+				
+				if (speeder == "accelerator") {
+						FUNC_speeder('accelerator') // disable it
+						FUNC_speeder('accelerator') // re-enable it with the right display (green if activated)
+					}
+		
+				if (DICT_Deals['Autoverheat'][2] == 1) {
+					document.getElementById("autoverheat").style.display = 'initial';
+					if (speeder == "autoverheat") {
+						FUNC_speeder('autoverheat') // disable it
+						FUNC_speeder('autoverheat') // re-enable it with the right display (green if activated)
+					}
+				}
+		</script>
+		<p id="hourglass_of_time"><button id="tapping_button" class="tooltip" onclick="tap_the_hourglass()">!
+		<span id="tooltip_tapping_button" class="DOWN_tooltip_text"></span></button>&nbsp;<span id="counter_turn"></span></p>
+		<script>
+			if (DICT_fundamental_talents['Hourglass tapping'][3] > 0) {
+				document.getElementById("tapping_button").style.display = "initial";
+				tap_the_hourglass(true) // disable it. true = initialize, only when we load the game
+				tap_the_hourglass(true) // re-enable it with the right display (green if activated)
+				if (current_turn > 0) {document.getElementById("tapping_button").style.borderColor = "grey";} // that's ugly programing, hopefully it won't be a problem
+			}
+			display_turn()
+		</script>
+		<div id="beetlejuice1" class="beetlejuice">BeetleJuice</div>
+		<div id="beetlejuice2" class="beetlejuice">BeetleJuice!</div>
+		<div id="beetlejuice3" class="beetlejuice">BEETLEJUICE!!!</div>
+		
+		<div id="tutorial_box"> <!--onmouseout="resize_tutorial('reduce')"-->
+			<span id="content_tutorial_box"><script>display_content_tutorial_box()</script></span>
+			<span id="counter_tutorial_box"><script>display_counter_tutorial_box()</script></span>
+		</div>
+		<script>
+			dragElement(document.getElementById("tutorial_box")); //Make the DIV element draggagle
+			if (tutorial_box_size == 1) {resize_tutorial();} // give the right size to the tutorial
+			document.getElementById("tutorial_box").style.top = tutorial_box_top+"px";
+			document.getElementById("tutorial_box").style.left = tutorial_box_left+"px";
+			
+		</script>
+		
+		<!-- START - God World -->
+		<span id="change_skin_god_world" class="CLASS_change_skin" onclick="change_skin('corps_god_world')">&#x1F457;</span>
+		<button id="title_god_world" class="world_title skin_title_god_world" onclick="display_front_screen('corps_god_world', DICT_corps_screens, 'title_god_world')">God World</button>
+		<div id="corps_god_world" class="world_body skin_corps_god_world">
+			<span id="explosive_god">&#x1f479;</span>
+			<span id="explosion_1">&#128165;</span>
+			<span id="explosion_2">&#128165;</span>
+			<div class="row"> <!-- Necessary div in order to have the tables next to each other instead of one above the other -->
+				<div> <!-- sub-div strangely necessary, otherwise the padding isn't done properly-->
+					<table id="body_parts_images">
+						<tr id="images_line_0" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_1" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_2" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_3" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_4" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_5" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_6" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_7" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_8" class="body_parts_images_name_icons"></tr>
+						<tr id="images_line_9" class="body_parts_images_name_icons"></tr>
+					</table>
+				</div>
+				<div>
+					<table id="body_parts">
+					</table>
+				</div>
+			</div>
+			<script>
+				display_all_lines() // fulfill the table "body_parts"
+				display_all_images_lines() // display the background lines with images of body parts
+			</script> 
+			<br />
+			<div>
+				<table id="Body_artwork"></table>
+			</div>
+			<script>if (DICT_fundamental_talents['Artwork'][3] > 0) {
+						display_artwork();
+						display_progress_bar_artwork();
+						document.getElementById("Body_artwork").style.display = "initial";							
+					}
+			</script>
+			<button id="toggle_tutorial" onclick="toggle_tutorial()" class="tooltip round_button">Tutorial<span class="LEFT_tooltip_text">Make the chat box visible.</span></button>
+		</div>
+		<!-- END - God World -->
+		
+		<!-- START - Human World -->
+		<span id="change_skin_human_world" class="CLASS_change_skin" onclick="change_skin('corps_human_world')">&#x1F457;</span>
+		<button id="title_human_world" class="world_title skin_title_human_world" onclick="display_front_screen('corps_human_world', DICT_corps_screens, 'title_human_world')">Human<br />World</button>
+		<div id="corps_human_world" class="world_body skin_corps_human_world">
+			<button id="unlocker" class="tooltip" onclick="unlock_all()">&#x1F513;<span class='TOP_tooltip_text'>Unlock everything you can!</span></button>
+			<script>if (DICT_Deals['Unlocker'][2] == 1) {document.getElementById("unlocker").style.display = 'initial';}</script>
+			<div>
+				<table id="list_human_world_titles">
+				</table>
+				
+				<div id="star_snow" onclick="freeze_time()" class="tooltip">&#x2744;<span id="tooltip_star_snow" class='DOWN_tooltip_text tooltip_deal'>Click to freeze the time.</span></div>
+				<div id="droplet" onclick="use_stored_time()" class="tooltip">&#x1F4A7;<span class='DOWN_tooltip_text tooltip_deal'>Click 3 times to use your stored time.<br /><br />Time stored:<br /><span id="tooltip_stored_time"></span></span></div>
+				<div id="frozenjuice1" class="frozenjuice">The frozen time starts melting.</div>
+				<div id="frozenjuice2" class="frozenjuice">The time is almost melted!</div>
+				<div id="frozenjuice3" class="frozenjuice">TIME FLOOD!</div>
+				
+				<script>
+					if (DICT_Deals['Freeze'][2] == 1) {
+						document.getElementById("star_snow").style.display = 'initial';
+						document.getElementById("droplet").style.display = 'initial';
+					}
+					if (time_frozen == true) { // activate twice to get the correct display.
+						freeze_time(true);
+						freeze_time(true);
+					}
+					document.getElementById("tooltip_stored_time").innerHTML = display_time(parseInt(frozen_stored_time*DEAL_Freeze_multiplicator));
+				</script>
+				<button id="multiplicator_button" class="tooltip" onmousedown="modify_multiplicator_button()"><span id="multiplicator_button_value"></span><span class='LEFT_tooltip_text'>Modify the number of prostitutes attributed at the same time</span></button>
+				<script>
+					display_default_human_world_titles();
+					display_dollars(); // function executed here, because it needs display_default_human_world_titles() to be executed first
+					display_multiplicator_button(); // display the button to add / remove several prostitutes at a time
+				</script>
+				
+				<div id="corps_Workers" class="human_world_body">
+					<div id="Body_workers">
+					</div>
+					<script>display_workers()</script>
+					<br />
+					<p id="Body_workers_upgrade_1" class='workers_upgrades'></p>
+					<p id="Body_workers_upgrade_2" class='workers_upgrades'></p>
+					<p id="Body_workers_upgrade_3" class='workers_upgrades'></p>
+					<script>display_workers_upgrades();</script>
+				</div>
+				
+				<div id="corps_Brothels_behind" class="human_world_body"> <!-- necessary because of the scroll bar not positioned properly otherwise, and for the Razzia button -->
+					<span id="span_razzia_button"><button class="orange_button tooltip" onclick="collect_brothel('razzia')">Razzia<span class="RIGHT_tooltip_text larger_tooltip">Grab all the money stored in the brothels at once, without leaving a single dollar behind.
+					<br /><br />"That's a thing you do, apparently... I wouldn't be proud if I were you." <i>The God of Laziness</i></span></button></span>
+					<br />
+					<div id="corps_Brothels" class="human_world_body">
+					<br />
+					</div>					
+				</div>
+				<script>
+					for (var i in DICT_Brothels_DYNAMIC) {document.getElementById('corps_Brothels').innerHTML += "<br /><div id='ID_"+i+"'></div>";} // initialisation des identifiants de div
+					display_all_brothels(); // remplissage des div
+				</script>
+				
+				<div id="corps_Factories" class="human_world_body">
+					<div id="Body_Factories" class="human_world_body">
+					</div>
+				</div>
+				<script>
+					for (var i in DICT_Factories_DYNAMIC) {document.getElementById('Body_Factories').innerHTML += "<br /><div id='ID_"+i+"'></div>";} // initialisation des identifiants de div
+					display_all_factories(); // remplissage des div
+				</script>
+
+				
+				<div id="corps_Temple" class="human_world_body">
+					<div id="Body_Temple">
+					</div>
+				</div>
+				<script>display_temple()</script>
+				
+				<div id="corps_Laboratory" class="human_world_body">
+					<div id="Body_laboratory">
+						<span class='description_button tooltip'>?<span class='tooltip_description LEFT_tooltip_text'>
+						As soon as you inaugurate the lab, a mad scientist shows up and offers to take charge.
+						He says he can do amazing stuff, instantly, but he needs a HUGE amount of components.
+						He is wearing a suit, definitely a sign of trustworthiness, so you decide to let him rule the lab. And also, you don't really want to do it yourself and don't have anyone else to do the job.
+						<br /><br />
+						You are curious though: how can he do researches instantly? You ask him, and he disdainfully replies, with a snork: "You're not the only god I'm doing business with. Doh."<br />
+						You furiously want to smite him for his impudence, but he can be very useful, so you refrain yourself...
+						<br /><br />
+						<span id="scientist_resurrection"></span>
+						When you level up in a field of study, the cost in dollars goes up for ALL the fields of study.<br />
+						The cost in dollars is multiplied by 10 000, the cost in body parts is multiplied by 10.<br />
+						Downgrading is free and will level down the cost, but you will have to pay a second time if you want to level up again.<br />
+						Each level will add 50 % productivity to the field of study (100 % with the God Deal "Science Beach!").
+						</span></span>
+						<table id="stock_body_parts_laboratory">
+							<tr>
+								<td id="stock_labo_0"></td>
+								<td id="stock_labo_1"></td>
+							</tr>
+							<tr>
+								<td id="stock_labo_2"></td>
+								<td id="stock_labo_3"></td>
+							</tr>
+							<tr>
+								<td id="stock_labo_4"></td>
+								<td id="stock_labo_5"></td>
+							</tr>
+							<tr>
+								<td id="stock_labo_6"></td>
+								<td id="stock_labo_7"></td>
+							</tr>
+							<tr>
+								<td id="stock_labo_8"></td>
+								<td><button id="ID_autotransfer_body_parts" class="tooltip" onclick="FUNC_autotransfer_all_body_parts()">Autotransfer body parts
+								<span class="DOWN_tooltip_text">If activated, body parts created are stored in the Laboratory instead of the God World.</span></button></td>
+							</tr>
+						</table>
+						<button id="button_kill_the_scientist" class="wannabe_activated_button tooltip" onclick="kill_the_scientist()">Smite<span class="DOWN_tooltip_text">Kill the scientist.</span></button>
+						<div id="upgrades_laboratory">
+						</div>
+					</div>
+					<div id="Body_laboratory_alternative">
+						<br />
+						<br />
+						YOU KILLED THE SCIENTIST.
+					</div>
+				</div>
+				<script>
+					display_stock_all_body_parts_laboratory()
+					// creation of upgrade windows:
+					for (var i in DICT_Laboratory_upgrades) {document.getElementById('upgrades_laboratory').innerHTML += "<br /><div id='ID_"+i+"'></div>";} // initialisation des identifiants de div
+					display_all_laboratory_upgrades(); // remplissage des div
+					
+					if (scientist_dead) {document.getElementById("Body_laboratory_alternative").style.display = 'initial';}
+					else if (scientist_resurrected) {additional_tooltip_resurrection();}
+				</script>
+				
+				<div id="corps_Schools" class="human_world_body">
+					<div id="Body_Schools">
+					</div>
+					<br />
+					<p id="School_1" class='school'></p><br />
+					<div id="School_2" class='school'></div><br />
+					<p id="School_3" class='school'></p>
+				</div>
+				<script>display_all_schools()</script>
+				
+				<div id="corps_Lobby" class="human_world_body">
+					<div id="Body_Lobby">
+						<span id="influence_points_value" class="tooltip"></span>
+						<div id="page_changer_lobby"><button onclick="change_page_lobby()" class="tutorial_box_change_page">&#8678;</button><span id="display_page_lobby">1 / 1</span><button onclick="change_page_lobby('next')" class="tutorial_box_change_page">&#8680;</button></div>
+						<div id="text_Lobby"></div>						
+						<div id="infos_bar_Lobby"></div>
+						<div id="Cadre_de_barre_de_progression_Lobby">
+							<div id="progress_bar_lobby" class="Niveau_de_barre_de_progression_Lobby"></div> 
+							<div id="progress_bar_lobby_text" class="text_progress_bar"></div>
+							<div id="bordure_barre_de_progression_Lobby">
+								<span id="display_gains_Lobby" class="profits_upgrade_Lobby"></span>
+							</div>
+							<div id="top_left_circle_Lobby"></div>
+							<div id="top_right_circle_Lobby"></div>
+							<div id="bottom_left_circle_Lobby"></div>
+							<div id="bottom_right_circle_Lobby"></div>
+						</div>
+					</div>
+				</div>
+				<script> display_lobby(lobby_page) </script>
+			</div>
+		</div>
+		<!-- END - Human World -->
+		
+		<!-- START - Talent Tree Fundamental Experience -->
+		<span id="change_skin_fundamental_experience" class="CLASS_change_skin" onclick="change_skin('corps_fundamental_experience')">&#x1F457;</span>
+		<button id="title_fundamental_experience" class="world_title skin_title_fundamental_experience" onclick="display_front_screen('corps_fundamental_experience', DICT_corps_screens, 'title_fundamental_experience')">Fundamental Talents</button>
+		<div id="corps_fundamental_experience" class="world_body skin_corps_fundamental_experience">
+		
+			<span id="Mysterious_black_square"><span id="Content_mysterious_black_square"><button id="mysterious_button" class="tooltip" onclick="FUNC_game_over()">?<span id="tooltip_end_game_button" class="TOP_tooltip_text">0 &#x2206;</span></button></span></span>
+			<script> document.getElementById("tooltip_end_game_button").innerHTML = end_game_price +" &#x2206;";
+				if (game_over) {display_game_over()}
+			</script>
+			
+			<span id="Infos_talent_tree" class="tooltip">?<span class="LEFT_tooltip_text larger_tooltip" style="line-height:1.2;">Maintain your click on a talent to get numerous levels WITHOUT wrist injury!<br /><br /> Of course, you still need enough ressources to buy all the levels. Don't push it.</span></span>
+			
+			<span id="Energy_trunk" class="fundamental_link"></span>
+			<span id="Style_trunk" class="style_link"></span>
+			
+			<span id="God_repellent_to_Lazy_convert" class="fundamental_link"></span>
+			<span id="God_repellent_to_Quick_mix" class="fundamental_link"></span>
+			<span id="God_repellent_to_Energy_fountain" class="fundamental_link"></span>
+			<span id="Lazy_convert_to_Step_up" class="fundamental_link"></span>
+			<span id="Quick_mix_to_Industrialization" class="fundamental_link"></span>
+			<span id="Industrialization_to_Twins" class="fundamental_link"></span>
+			<span id="Twins_to_One_equals_more" class="fundamental_link"></span>
+			<span id="One_equals_more_to_Hourglass_tapping" class="fundamental_link"></span>
+			<span id="Hourglass_tapping_to_Concentrated_Arm" class="fundamental_link"></span>
+			<span id="Step_up_to_Multitasking" class="fundamental_link"></span>
+			<span id="Multitasking_to_Octogod" class="fundamental_link"></span>
+			<span id="Octogod_to_Unstoppable" class="fundamental_link"></span>
+			<span id="Multitasking_to_Multiwork" class="fundamental_link"></span>
+			<span id="Artwork_to_Multiwork" class="fundamental_link"></span>
+			<span id="Concentrated_Toenail_to_Concentrated_Genitals" class="fundamental_link"></span>
+			<span id="Concentrated_Toe_to_Concentrated_Toenail" class="fundamental_link"></span>
+			<span id="Concentrated_Foot_to_Concentrated_Toe" class="fundamental_link"></span>
+			<span id="Concentrated_Leg_to_Concentrated_Foot" class="fundamental_link"></span>
+			<span id="Concentrated_Hand_to_Concentrated_Chest" class="fundamental_link"></span>
+			<span id="Concentrated_Arm_to_Concentrated_Head" class="fundamental_link"></span> <span id="Concentrated_Arm_to_Concentrated_Hand" class="fundamental_link"></span>
+			<span id="Concentrated_Belly_to_Concentrated_Leg" class="fundamental_link"></span>
+			<span id="Concentrated_Chest_to_Concentrated_Belly" class="fundamental_link"></span>
+			<span id="Concentrated_Chest_to_Concentrated_Belly" class="fundamental_link"></span>
+			<span id="Concentrated_Genitals_to_Concentrated_Head" class="fundamental_link"></span>
+			<span id="Concentrated_Genitals_to_Concentrated_Head" class="fundamental_link"></span>
+			 
+			<span id="Life_saver_to_Money_saver" class="style_link"></span>
+			<span id="Money_saver_to_Tip" class="style_link"></span>
+			<span id="Tip_to_Real_esthete" class="style_link"></span>
+			<span id="Real_esthete_to_Real_estate" class="style_link"></span>
+			<span id="Money_saver_to_Crap_saver" class="style_link"></span>
+			<span id="Crap_saver_to_Chain_of_production" class="style_link"></span>
+			<span id="Chain_of_production_to_Optimized_processes" class="style_link"></span>
+			<span id="Real_estate_to_Optimized_processes" class="style_link"></span>
+			<span id="Optimized_processes_to_Classy_school" class="style_link"></span>
+			<span id="Optimized_processes_to_Wide_teaching" class="style_link"></span>
+			<span id="Wide_teaching_to_Quick_persuasion" class="style_link"></span>
+			<span id="Classy_school_to_Quick_persuasion" class="style_link"></span>
+			<span id="Quick_persuasion_to_Scaling" class="style_link"></span>
+			 
+			 <span id="full_tree"></span>
+			 <script>
+				display_initial_fundamental_tree();
+				if (total_ruin_everything > 0) {display_initial_style_talents();}
+			</script>
+			 
+		</div>
+		<!-- END - Talent Tree Fundamental Experience -->
+		
+		<!-- START - Prestige -->
+		<span id="change_skin_prestige" class="CLASS_change_skin" onclick="change_skin('corps_prestige')">&#x1F457;</span>
+		<button id="title_prestige" class="world_title skin_title_prestige" onclick="display_front_screen('corps_prestige', DICT_corps_screens, 'title_prestige')">&#x1D4AB;restige </button>
+		<div id="corps_prestige" class="world_body skin_corps_prestige">
+			<div id="prestige_management_bar"> <span id="prestige_points_count">IF THIS IS DISPLAYED, THERE IS A BUG.</span>
+			<button id="Break_the_Deal" class="locked_button tooltip"> Break the Deal <span class='LEFT_tooltip_text'>Break the selected deal to get your &#x1D4AB; back.<br /><br />Warning: If you want to seal the deal again, it will take 5 minutes to re-negociate it.</span></button></div>
+			<!-- the "Break the deal" button doesn't have an onclick by default, it's attributed when the user selects a deal -->
+			<script>display_prestige_points()</script>
+			<table id="Gods_talents">
+				<tr>
+					<th><span id="strength_title">God of Strength</span></th>
+					<th><span id="beauty_title">Godess of Beauty</span></th>
+					<th><span id="time_title">God of Time</span></th>
+				</tr>
+				<tr>
+					<td id="God_1" class="Gods_talents_cell">
+						<span id="strength_triangle" class="prestige_triangle">&#x2206;</span>
+						<button id="Deal_0_3">talent 4</button><br /><br />
+						<button id="Deal_0_1">talent 2</button>&nbsp;<button id="Deal_0_2">talent 3</button><br /><br />
+						<button id="Deal_0_0">talent 1</button>
+					</td>
+					<td id="God_2" class="Gods_talents_cell">
+						<span id="beauty_triangle" class="prestige_triangle">&#x2206;</span>
+						<button id="Deal_1_3">talent 4</button><br /><br />
+						<button id="Deal_1_1">talent 2</button>&nbsp;<button id="Deal_1_2">talent 3</button><br /><br />
+						<button id="Deal_1_0">talent 1</button>
+					</td>
+					<td id="God_3" class="Gods_talents_cell">
+						<span id="time_triangle" class="prestige_triangle">&#x2206;</span>
+						<button id="Deal_2_3">talent 4</button><br /><br />
+						<button id="Deal_2_1">talent 2</button>&nbsp;<button id="Deal_2_2">talent 3</button><br /><br />
+						<button id="Deal_2_0">talent 1</button>
+					</td>
+				</tr>
+				<tr>
+					<th><span class="tooltip">God of Laziness<span class='DOWN_tooltip_text'>Glowing? No thanks... That seems tiring...</span></span></th>
+					<th><span id="science_title">God of Science</span></th>
+					<th><span id="energy_title">God of Energy</span></th>
+				</tr>
+				<tr>
+					<td id="God_4" class="Gods_talents_cell">
+						<span class="prestige_triangle">&#x2206;</span>
+						<button id="Deal_3_3">talent 4</button><br /><br />
+						<button id="Deal_3_1">talent 2</button>&nbsp;<button id="Deal_3_2">talent 3</button><br /><br />
+						<button id="Deal_3_0">talent 1</button>
+					</td>
+					<td id="God_5" class="Gods_talents_cell">
+						<span id="science_triangle" class="prestige_triangle">&#x2206;</span>
+						<button id="Deal_4_3">talent 4</button><br /><br />
+						<button id="Deal_4_1">talent 2</button>&nbsp;<button id="Deal_4_2">talent 3</button><br /><br />
+						<button id="Deal_4_0">talent 1</button>
+					</td>
+					<td id="God_6" class="Gods_talents_cell">
+						<span id="energy_triangle" class="prestige_triangle">&#x2206;</span>
+						<button id="Deal_5_3">talent 4</button><br /><br />
+						<button id="Deal_5_1">talent 2</button>&nbsp;<button id="Deal_5_2">talent 3</button><br /><br />
+						<button id="Deal_5_0">talent 1</button>
+					</td>
+				</tr>
+			</table>
+			<script>
+				display_prestige_deals()
+				for (var i in DICT_Deals) {display_additional_deal_tooltip(i)}
+			</script>
+		</div>
+		<!-- END - Prestige -->
+		
+		<!-- START - God of Extortion -->
+		<span id="change_skin_god_of_extortion" class="CLASS_change_skin" onclick="change_skin('corps_god_of_extortion')">&#x1F457;</span>
+		<button id="title_god_of_extortion" class="world_title skin_title_god_of_extortion" onclick="display_front_screen('corps_god_of_extortion', DICT_corps_screens, 'title_god_of_extortion')">God of Extortion</button>
+		<div id="corps_god_of_extortion" class="world_body skin_corps_god_of_extortion">
+			<span id="golden_rings_value" class="tooltip"></span><script>display_golden_rings()</script>
+			<button id="buy_rings_button" class="tooltip" onclick="buy_golden_rings()">Get Golden Rings<span class="RIGHT_tooltip_text">Want some? Get some!</span></button>
+			<button id="welcome_offer_button" onclick="confirm_welcome_offer()">Welcome offer!</button>
+			<span id="value_1_hour" class="tooltip"></span><script>display_1_hour()</script>
+			<span id="value_24_hours" class="tooltip"></span><script>display_24_hours()</script>
+			
+			<span id="Trunk_1" class="purchase_link purchase_trunk"></span>
+			<span id="Trunk_2" class="purchase_link purchase_trunk"></span>
+			<span id="Trunk_3" class="purchase_link purchase_trunk"></span>
+			<span id="Trunk_4" class="purchase_link purchase_trunk"></span>
+			
+			<span id="Link_1" class="purchase_link"></span>
+			<span id="Link_2" class="purchase_link"></span>
+			<span id="Link_3" class="purchase_link"></span>
+			<span id="Link_4" class="purchase_link"></span>
+			<span id="Link_5" class="purchase_link"></span>
+			<span id="Link_6" class="purchase_link"></span>
+			<span id="Link_7" class="purchase_link"></span>
+		</div>
+		<script>
+				for (var i in DICT_God_of_Extortion) { // initialize the IDs
+					document.getElementById("corps_god_of_extortion").innerHTML += "<button id='"+DICT_God_of_Extortion[i][0]+"'>IF DISPLAYED: BUG</button>";
+				}
+				display_god_of_extortion()
+			</script>
+		<!-- END - God of Extortion -->
+		
+		<!-- START - Statistics -->
+		<span id="change_skin_statistics" class="CLASS_change_skin" onclick="change_skin('corps_statistics')">&#x1F457;</span>
+		<button id="title_statistics" class="world_title skin_title_statistics" onclick="display_front_screen('corps_statistics', DICT_corps_screens, 'title_statistics')">Statistics</button>
+		<div id="corps_statistics" class="world_body skin_corps_statistics">
+			<table id="statistics_table">
+			</table>
+			<script>display_all_stats()</script>
+		</div>
+		<!-- END - Statistics -->
+		
+		<!-- START - Encyclopedia -->
+		<span id="change_skin_encyclopedia" class="CLASS_change_skin" onclick="change_skin('corps_encyclopedia')">&#x1F457;</span>
+		<button id="title_encyclopedia" class="world_title skin_title_encyclopedia" onclick="display_front_screen('corps_encyclopedia', DICT_corps_screens, 'title_encyclopedia')">Encyclopedia</button>
+		<div id="corps_encyclopedia" class="world_body skin_corps_encyclopedia">			
+			<p id="main_buttons_encyclopedia"></p>
+			<p id="secondary_buttons_encyclopedia"></p>
+			<p id="displayed_content_encyclopedia"></p>
+			<script>display_encyclopedia();</script>
+		</div>
+		<!-- END - Encyclopedia -->
+		
+		<!-- START - Settings -->
+		<span id="change_skin_settings" class="CLASS_change_skin" onclick="change_skin('corps_settings')">&#x1F457;</span>
+		<button id="title_settings" class="world_title skin_title_settings" onclick="display_front_screen('corps_settings', DICT_corps_screens, 'title_settings')">Settings</button>
+		<div id="corps_settings" class="world_body skin_corps_settings">
+			<div id="patch_notes_window">
+				<span id="main_title_patch_notes">Credits</span>
+				<br ><br /><br />
+				<span class="title_patch">Backgrounds:</span>
+				<br /><br />
+				<span><a href='https://www.freevector.com/free-star-background-vector--19055'>FreeVector.com</a><br />
+				<a href='https://www.freepik.com'>https://www.freepik.com</a></span>
+				<br /><br /><br />
+				<span class="title_patch">Pictures:</span>
+				<br /><br />
+				<span>Davi Viana</span>
+				<br /><br /><br />
+				<span class="title_patch">Musics:</span>
+				<br /><br />
+				<span>Maksymilian Jednoróg, Jon Presstone, PGN Music, Bensound, Storyblocks.</span>
+				<br /><br /><br />
+				<span class="title_patch">Testing:</span>
+				<br /><br />
+				<span>Benjamin Serre (he didn't test that much to be honest, but he's a friend, we don't want to upset him by not crediting him, do we?)</span>
+			</div>
+			<div>
+				<button id="title_screen" onclick="display_front_screen('corps_intro', LIST_main_screens)" class="settings_button tooltip"> Title screen <span class="DOWN_tooltip_text">Go back to the title screen. Your progress will be saved.</span></button>
+				<button id="transition_human_world_screen" onclick="display_front_screen('corps_transition_human_world', LIST_main_screens)" class="settings_button tooltip"> Revelation screen <span class="DOWN_tooltip_text">Read the revelation screen again. Because why not.</span></button>					
+				<script>if (tutorial_step >= 17) {document.getElementById("transition_human_world_screen").style.display = "initial";}</script>
+				<button id="save_txt" onclick="save_as_text_file()" class="tooltip"> Save game <span class="DOWN_tooltip_text">Save your progress on your computer in a text file.<br /><br />Note: your progress is also saved automatically in the local storage of your browser every 2 seconds.</span></button>
+				<button id="load_txt" onclick="load_text_file()" class="tooltip"> Load game <span class="DOWN_tooltip_text">Upload a saved file containing your progress from your computer.</span></button>
+				<!-- <button id="add_1_hour" onclick="time_runner(3600000)">Add 1 hour</button>
+				<button id="add_1_week" onclick="time_runner(604800000)">Add 1 week</button> <!-- week : 604800000 -->
+				<span id="toggle_unlocked_buttons"></span>
+				<button id="change_music_button" class="tooltip" onclick="change_music()">&#x266B;  &#x266B;<span id="tooltip_change_music" class="LEFT_tooltip_text"></span></button>
+				<!-- <button id="credits_button" onclick="confirm_credits()">Credits</button> -->
+				<button id="start_over" onclick="confirm_delete_all_data()" class="red_button tooltip"> Start over <span class="TOP_tooltip_text">Reset your progress, and start over</span></button>
+				
+				<script>
+					toggle_tutorial(); toggle_tutorial(); // display the right color for the button. Yes it's normal to activate twice.
+					unlock_buttons(true); unlock_buttons(true); // display the right color for the button. Yes it's normal to activate twice.
+					if (tutorial_step > 6) {
+						document.getElementById("toggle_unlocked_buttons").style.display = "initial";
+					}
+				</script>
+				
+			</div>
+		</div>
+		<!-- END - Settings -->
+		
+		<script>
+			// Main frame:
+			for (var menu in DICT_corps_screens) { // display the menus that have been unlocked
+				if (DICT_corps_screens[menu][0] == 1) {
+					document.getElementById(DICT_corps_screens[menu][1]).style.display = "initial";
+				}
+			}
+			if (DICT_Deals['4th wall'][2] == 1) {display_skins_interface();} // the conditions other than 4th wall are included in the function
+			display_front_screen('corps_god_world', DICT_corps_screens, 'title_god_world');
+			// Human world:
+			for (var building in DICT_dollars_buildings_STALE) {if (DICT_dollars_buildings_DYNAMIC[building][0] == 1) {unlock_building(building)}} // display the buildings that have been unlocked
+		</script>
+		
+	</div> <!-- END - Main Frame -->
+	<script> if (tutorial_step > 0) {display_front_screen('main_frame', LIST_main_screens);}</script> <!-- don't display the intro if the player has seen it already -->
+	<!--客服 开始-->
+<script src="//g8hh.github.io/static/js/jquery.min.js"></script>
+<link rel="stylesheet" href="//g8hh.github.io/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
+<script src="//g8hh.github.io/static/js/kf.js"></script>
+<!-- 客服 结束 -->
+<!--站长统计-->
+    <div style="display: none">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?828597e93cee632465679b7ef35edfd5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>    </div>	
+</body>
+<script>
+	window.runner = setInterval("time_runner()", 50); // launch the time_runner function 20 times / second to keep track of time
+	corrections_html(); // launch this function to correct some version problems
+</script>
+</html>

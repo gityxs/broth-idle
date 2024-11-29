@@ -1,0 +1,3127 @@
+body
+{width: 800px;
+margin: auto;}
+
+table
+{text-align:center;}
+
+th
+{border: 1px none #000000;
+padding:4px;}
+
+td
+{border: 1px none #000000;
+padding:4px;}
+
+h1
+{font-family:arial, serif;}
+
+h2
+{font-family:arial, serif;}
+
+button
+{background-color: #FFD;
+background-image: linear-gradient(to right, #FFF, #8CC);
+color: #5AF;
+text-shadow: 1px 1px #005;
+border-color: #E3E3E3;
+height: 30px;
+font-size: 16px;
+border-radius: 5px;
+outline:none;
+cursor: pointer;}
+
+button:hover
+{background-image: linear-gradient(to left, #FFF, #8CC);}
+
+.bold
+{font-weight: bold;}
+
+.italic
+{font-style: italic;}
+
+.no_display
+{display: none;}
+
+.do_display
+{display: initial;}
+
+/* START - Used for the display of the God World, but could be useful for other things */
+.row
+{display: flex;}
+/* END - Used for the display of the God World, but could be useful for other things */
+
+
+/* START - Tooltips management */
+.tooltip
+{position: relative;}
+
+.text_tooltip
+{color: #000099;}
+
+.TOP_tooltip_text
+{display: none;
+font-size: 12px;
+background-color: #040;
+background-image: none;
+color: #fff;
+text-align: center;
+text-shadow: 0px 0px;
+border-radius: 6px;
+padding: 5px;
+position: absolute;
+z-index: 9;
+width: 80px;
+bottom: 125%;
+left: 50%;
+margin-left: -40px; /* Use half of the width (120/2 = 60), to center the tooltip */
+font-weight: normal;
+pointer-events: none;
+}
+
+.tooltip:hover .TOP_tooltip_text
+{display: initial;}
+
+.tooltip .TOP_tooltip_text::after
+{content: "";
+position: absolute;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #040 transparent transparent transparent;}
+
+.DOWN_tooltip_text
+{display: none;
+font-size: 12px;
+background-color: #040;
+background-image: none;
+color: #fff;
+text-align: center;
+text-shadow: 0px 0px;
+border-radius: 6px;
+padding: 5px;
+position: absolute;
+z-index: 9;
+width: 80px;
+top: 125%;
+left: 50%;
+margin-left: -40px; /* Use half of the width (120/2 = 60), to center the tooltip */
+font-weight: normal;
+pointer-events: none;}
+
+.tooltip:hover .DOWN_tooltip_text
+{display: initial;}
+
+.tooltip .DOWN_tooltip_text::after
+{content: "";
+position: absolute;
+bottom: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent transparent #040 transparent;}
+
+.LEFT_tooltip_text
+{display: none;
+font-size: 12px;
+background-color: #040;
+background-image: none;
+color: #fff;
+text-align: center;
+text-shadow: 0px 0px;
+border-radius: 6px;
+padding: 5px;
+position: absolute;
+z-index: 9;
+width: 80px;
+top: -10%;
+right: 110%;
+margin-left: -40px; /* Use half of the width (120/2 = 60), to center the tooltip */
+font-weight: normal;
+pointer-events: none;}
+
+.tooltip:hover .LEFT_tooltip_text
+{display: initial;}
+
+.tooltip .LEFT_tooltip_text::after
+{content: "";
+position: absolute;
+top: 10px;
+left: 100%;
+margin-left: 0px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent transparent transparent #040;}
+
+.RIGHT_tooltip_text
+{display: none;
+font-size: 12px;
+background-color: #040;
+background-image: none;
+color: #fff;
+text-align: center;
+text-shadow: 0px 0px;
+border-radius: 6px;
+padding: 5px;
+position: absolute;
+z-index: 9;
+width: 80px;
+margin-top: 0%; /* Use half of the width (120/2 = 60), to center the tooltip */
+left: 110%;
+top: 10%;
+font-weight: normal;
+pointer-events: none;}
+
+.tooltip:hover .RIGHT_tooltip_text
+{display: initial;}
+
+.tooltip .RIGHT_tooltip_text::after
+{content: "";
+position: absolute;
+top: 7px;
+right: 100%;
+margin-left: 0px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent #040 transparent transparent;}
+
+.tooltip_talent
+{width: 133px;
+left: 38px;}
+
+.tooltip_description
+{width: 527px;
+top: -4px;
+line-height: 18px;}
+
+.tooltip_Consume_Items_brothels
+{width: 230px;
+margin-left: -115px; /* Use half of the width (120/2 = 60), to center the tooltip */}
+
+.larger_tooltip
+{width: 133px;}
+
+.tooltip_deal
+{width: 140px;
+margin-left: -70px;}
+
+.big_tooltip_deal
+{width: 240px;
+margin-left: -120px;}
+
+.big_tooltip_brothel
+{width: 350px;
+margin-left: -175px;}
+/* END - Tooltips management */
+
+
+
+/* Global - start */
+#main_frame
+{display: none;
+width: 800px;
+height: 600px;
+padding: 5px;
+position: absolute;
+margin-bottom: 20px;
+background-color: #EFE;
+background-image: linear-gradient(to bottom right, #EFE , #2B2, #40E0D0, #55F, #000044, black);
+background-image: url("Images/Brothidle_main_background.jpg");
+font-family: arial;}
+
+.alert_box
+{position: relative;
+top: 20%;
+width: 500px;
+height: 240px;
+margin: auto;
+padding: 5px;
+background-color: rgb(255, 255, 235);
+background-image: radial-gradient(rgb(255, 255, 235) 60%, rgb(205, 205, 255));
+color: rgb(155, 0, 30);
+font-weight: bold;
+text-shadow: 1px 1px #000;
+border-radius: 10px;
+text-align: center;}
+
+.frame_alert_box
+{display: none;
+position: absolute;
+width: 820px;
+height: 620px;
+top: -5px;
+left: -5px;
+background-color: rgba(255, 255, 255, 0.3);
+z-index: 8}
+
+.requirements_table
+{position: absolute;
+top: 5px;
+left: 10px;
+font-size: 12px;
+}
+
+.costs_table
+{position: absolute;
+top: 10px;
+right: 15px;
+font-size: 12px;
+}
+
+.symbol_display
+{font-weight: normal;
+color: black;}
+
+.standard_button_reversed
+{background-image: linear-gradient(to left, #FFF, #8CC);}
+
+.standard_button_reversed:hover
+{background-image: linear-gradient(to right, #FFF, #8CC);}
+
+.activated_button
+{background-color: #BFB;
+background-image: linear-gradient(to right, #EFE, #5C5);
+color: #0B0;
+border-color: #5C5;}
+
+.activated_button:hover
+{background-image: linear-gradient(to left, #EFE, #5C5);}
+
+.activated_button_reversed
+{background-color: #BFB;
+background-image: linear-gradient(to left, #EFE, #5C5);
+color: #0B0;
+border-color: #5C5;}
+
+.activated_button_reversed:hover
+{background-image: linear-gradient(to right, #EFE, #5C5);}
+
+.greener_button
+{background-color: #8E8;
+background-image: linear-gradient(to right, #CFC, #8E8);
+color: #0B0;}
+
+.greener_button:hover
+{background-image: linear-gradient(to left, #CFC, #8E8);}
+
+.wannabe_activated_button
+{background-color: #FDD;
+background-image: linear-gradient(to right, #FEE, #C55);
+color: #D11;
+border-color: #C55;}
+
+.wannabe_activated_button:hover
+{background-image: linear-gradient(to left, #FEE, #C55);}
+
+.locked_button
+{background-color: #DDD;
+background-image: none;
+color: #888;
+border: none;}
+
+.locked_button:hover
+{background-image: none;}
+
+.red_button
+{background-color: #FDD;
+background-image: linear-gradient(to right, #F55, #F55);
+color: #D11;}
+
+.yellow_button
+{background-color: #FFD;
+background-image: linear-gradient(to right, #FFD, #FF0);
+color: #FE0;}
+
+.yellow_button_reversed
+{background-color: #FFD;
+background-image: linear-gradient(to right, #FF0, #FFD);
+color: #FE0;}
+
+.yellow_button_reversed:hover
+{background-image: linear-gradient(to left, #EE0, #EEC);}
+
+.silver_button
+{background-color: #FFD;
+background-image: linear-gradient(to right, #FFD, #CCC);
+color: #FE0;}
+
+.cyan_button
+{color: #0FF;}
+
+.orange_button
+{background-color: #FD0;
+background-image: linear-gradient(to right, #FFF, #EB8);
+color: #F60;
+border-color: #FB5;}
+
+.orange_button:hover
+{background-image: linear-gradient(to left, #FFF, #EB8);}
+
+.orange_button_reversed
+{background-color: #FD0;
+background-image: linear-gradient(to right, #EB8, #FFF);
+color: #F60;
+border-color: #FB5;}
+
+.orange_button_reversed:hover
+{background-image: linear-gradient(to left, #EB8, #FFF);}
+
+.milk_button
+{background-color: #FFF;
+background-image: none;
+color: #EEE;
+text-shadow: 1px 1px #444;}
+
+.clickable
+{cursor: pointer;}
+
+.italic
+{font-style: italic;}
+
+.highlighting_glow
+{animation: highlighting_animation 1.5s ease-in-out infinite alternate;}
+
+@-webkit-keyframes highlighting_animation {
+  from {
+    box-shadow: 0 0 50px #F80, 0 0 60px #FA6, 0 0 70px #FA6, 0 0 80px #E72, 0 0 90px #E72;
+  }
+  to {
+    box-shadow: 0 0 70px #f80, 0 0 80px #f80, 0 0 90px #FA2, 0 0 100px #FA2, 0 0 110px #FC6, 0 0 120px #FC6, 0 0 130px #FE9, 0 0 140px #FEA;
+  }
+}
+
+.error_infos_box
+{color: red;}
+/* Global - end */
+
+
+
+
+/* Main frame - start */
+.ressource_symbol
+{position: absolute;
+top:-5px;
+left:-11px;
+height: 36px;
+line-height: 36px;
+width: 36px;
+text-align: center;
+background-color: #EAEAEF;
+background-image: none;
+border: 1px solid #006C00;
+color: #006C00;
+border-radius: 24px;
+font-size: 24px;}
+
+#fundamental_energy_value
+{position: absolute;
+top: 10px;
+left: 16px;
+padding: 5px;
+background-color: #EAEAEF;
+background-image: none;
+border: 1px solid #006C00;
+color: #006C00;
+border-radius: 5px;
+padding-left: 30px;}
+
+#prostitutes_value
+{display: none;
+position: absolute;
+top: 50px;
+left: 16px;
+padding: 5px;
+background-color: #EAEAEF;
+background-image: none;
+border: 1px solid #006C00;
+color: #006C00;
+border-radius: 5px;
+padding-left: 30px;}
+
+#trained_prostitutes_value
+{display: none;
+position: absolute;
+top: 50px;
+left: 210px;
+padding: 5px;
+background-color: #EAEAEF;
+background-image: none;
+border: 1px solid #006C00;
+color: #006C00;
+border-radius: 5px;
+padding-left: 30px;}
+
+#transfer_button
+{display: none;
+position: absolute;
+top: 14px;
+left: 140px;
+height: 24px;
+width: 24px;
+text-shadow: none;
+padding-top: 2px;
+font-weight: bold;
+border-radius: 20px;}
+
+.active_transfer_button
+{background-color: #EAEAEF;
+background-image: linear-gradient(to bottom right, #FFF, #393);
+color: #006C00;}
+
+#dollars_value
+{display: none;
+position: absolute;
+top: 10px;
+left: 175px;
+padding: 5px;
+background-color: #EAEAEF;
+background-image: none;
+border: 1px solid #006C00;
+color: #006C00;
+border-radius: 5px;
+padding-left: 30px;}
+
+#style_value
+{display: none;
+position: absolute;
+top: 10px;
+left: 315px;
+padding: 5px;
+background-color: #EAEAEF;
+background-image: none;
+border: 1px solid #006C00;
+color: #006C00;
+border-radius: 5px;
+padding-left: 30px;}
+
+#ruin_everything  /* Div Bouton */
+{display: none;
+position: absolute;
+top: 10px;
+right: 204px;}
+
+#auto_next_turn  /* Div Bouton */
+{position: absolute;
+top: 10px;
+right: 128px;}
+
+#next_turn  /* Div Bouton */
+{position: absolute;
+top: 10px;
+right: 10px;}
+
+#letter_spacing2px
+{letter-spacing: 2px;}
+
+#restartor
+{position: absolute;
+top: 11px;
+right: 177px;}
+
+#restartor_button
+{height: 28px;
+font-size: 14px;
+padding: 0px;}
+
+#restartor_text
+{position: relative;
+top: -1px;
+left: -1px;}
+
+#semiauto
+{position: absolute;
+top: 11px;
+right: 111px;}
+
+#semiauto_button
+{height: 28px;
+font-size: 14px;
+padding: 0px;}
+
+#semiauto_text
+{position: relative;
+top: -1px;
+left: -1px;}
+
+#accelerator
+{position: absolute;
+top: 40px;
+right: 157px;}
+
+#accelerator_button
+{height: 16px;
+font-size: 14px;
+padding: 0px;}
+
+#accelerator_text
+{position: relative;
+top: -5px;
+left: -1px;}
+
+#autoverheat
+{display: none;
+position: absolute;
+top: 40px;
+right: 129px;}
+
+#autoverheat_button
+{height: 16px;
+font-size: 14px;
+padding: 0px;}
+
+#autoverheat_text
+{position: relative;
+margin: 2px;
+letter-spacing: -4px;
+top: -5px;
+left: -3px;}
+
+#hourglass_of_time
+{position: absolute;
+top: 35px;
+right: 15px;
+font-size: 20px;
+color: rgb(0, 0, 255);
+text-shadow: 1px 1px #000000;
+font-family: verdana;}
+
+#tapping_button
+{display: none;
+height: 24px;
+width: 24px;
+border-color: initial;}
+
+#counter_turn /* Compteur */
+{font-size: 20px;
+color: rgb(0, 0, 255);
+text-shadow: 1px 1px #000000;
+font-family: verdana;}
+
+#bully_god_face
+{cursor: pointer;}
+
+.beetlejuice
+{position: absolute;
+right: 5px;
+color: yellow;
+text-shadow: 1px 1px #000000;
+z-index: 3;
+pointer-events: none;
+display: none;}
+
+#beetlejuice1
+{top: 90px;
+font-size: 10px;}
+
+#beetlejuice2
+{top: 102px;
+font-size: 12px;}
+
+#beetlejuice3
+{top: 120px;
+font-size: 14px;}
+
+#tutorial_box
+{position: absolute;
+top: 100px; /* useless, it's bypassed by the tutorial_box_top global variable */
+left: 205px; /* useless, it's bypassed by the tutorial_box_left global variable */
+width: 565px;
+height: 80px;
+padding: 8px;
+padding-left: 26px;
+padding-right: 26px;
+border-radius: 45px;
+background-color: #EAEAEF;
+background-image: none;
+border: 1px solid #006C00;
+color: #006C00;
+font-size: 16px;
+z-index: 5;
+font-family: arial serif;
+cursor: grab;}
+
+.tutorial_emphasize
+{font-weight: bold;
+color: #900;}
+
+.tutorial_growth
+{transform: scale(1.2, 1.2);
+transform-origin: 45% 0%;}
+
+#loupe
+{font-size: 12px;
+cursor: pointer;}
+
+.tutorial_menu_button
+{font-size: 12px;
+cursor: pointer;}
+
+.tutorial_box_change_page
+{border: none;
+text-shadow: 0px 0px;
+background-color: transparent;
+background-image: none;}
+
+.tutorial_box_change_page:hover
+{background-image: none;}
+
+#counter_tutorial_box
+{position: absolute;
+bottom: 0px;
+right: 10px;}
+
+#tutorial8_energy
+{font-size: 12px;}
+
+.world_body
+{position: absolute;
+width: 660px;
+height: 500px;
+bottom: 10px;
+right: 10px;
+padding: 5px;
+border-radius: 5px;
+z-index: 2;}
+
+.world_title
+{display: none;
+position: absolute;
+width: 120px;
+height: 58px;
+left: 15px;
+border:none;
+border-radius: 5px;
+z-index: 1;}
+/* Main frame - end */
+
+
+/* God world - start */
+#corps_god_world
+{font-weight: bold;
+z-index: 2;}
+
+#title_god_world
+{top: 95px;
+font-weight: bold;}
+
+.skin_corps_god_world
+{color: #FF7878;
+text-shadow: 1px 1px #000;
+background-color: #FF8;
+background-image: radial-gradient(#6C8, #FF8 90%);
+background-image: radial-gradient(at 0px 35px, #FF8 5%, #6C8);
+animation: glow_god_world 2s ease-in infinite alternate;}
+
+@-webkit-keyframes glow_god_world {
+  0% {background-image: radial-gradient(at 0px 35px, #FF8 5%, #6C8);}
+  5% {background-image: radial-gradient(at 0px 35px, #FF8 6%, #6C8);}
+  10% {background-image: radial-gradient(at 0px 35px, #FF8 7%, #6C8);}
+  15% {background-image: radial-gradient(at 0px 35px, #FF8 8%, #6C8);}
+  20% {background-image: radial-gradient(at 0px 35px, #FF8 9%, #6C8);}
+  25% {background-image: radial-gradient(at 0px 35px, #FF8 10%, #6C8);}
+  30% {background-image: radial-gradient(at 0px 35px, #FF8 11%, #6C8);}
+  35% {background-image: radial-gradient(at 0px 35px, #FF8 12%, #6C8);}
+  40% {background-image: radial-gradient(at 0px 35px, #FF8 13%, #6C8);}
+  45% {background-image: radial-gradient(at 0px 35px, #FF8 14%, #6C8);}
+  50% {background-image: radial-gradient(at 0px 35px, #FF8 15%, #6C8);}
+  55% {background-image: radial-gradient(at 0px 35px, #FF8 16%, #6C8);}
+  60% {background-image: radial-gradient(at 0px 35px, #FF8 17%, #6C8);}
+  65% {background-image: radial-gradient(at 0px 35px, #FF8 18%, #6C8);}
+  70% {background-image: radial-gradient(at 0px 35px, #FF8 19%, #6C8);}
+  75% {background-image: radial-gradient(at 0px 35px, #FF8 20%, #6C8);}
+  80% {background-image: radial-gradient(at 0px 35px, #FF8 21%, #6C8);}
+  85% {background-image: radial-gradient(at 0px 35px, #FF8 22%, #6C8);}
+  90% {background-image: radial-gradient(at 0px 35px, #FF8 23%, #6C8);}
+  95% {background-image: radial-gradient(at 0px 35px, #FF8 24%, #6C8);}
+  100% {background-image: radial-gradient(at 0px 35px, #FF8 25%, #6C8);}
+}
+
+.skin_title_god_world
+{color: #FF7878;
+text-shadow: 1px 1px #000;
+background-color: #FF8;
+background-image: none;}
+
+.skin_title_god_world:hover
+{background-image: none;}
+
+#body_part_name_0
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_1
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_2
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_3
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_4
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_5
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_6
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_7
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_8
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+#body_part_name_9
+{padding-top: 8px;
+padding-bottom: 8px;}
+
+
+#waving_delay0
+{animation-name: waving;
+animation-delay: 0s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay1
+{animation-name: waving;
+animation-delay: 0.2s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay2
+{animation-name: waving;
+animation-delay: 0.4s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay3
+{animation-name: waving;
+animation-delay: 0.6s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay4
+{animation-name: waving;
+animation-delay: 0.8s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay5
+{animation-name: waving;
+animation-delay: 1s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay6
+{animation-name: waving;
+animation-delay: 1.2s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay7
+{animation-name: waving;
+animation-delay: 1.4s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay8
+{animation-name: waving;
+animation-delay: 1.6s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+#waving_delay9
+{animation-name: waving;
+animation-delay: 1.8s;
+animation-iteration-count: infinite;
+animation-timing-function: ease-in-out;}
+
+.elements_waving
+{position: relative;
+animation-duration: 2.5s;}
+
+@keyframes waving {
+  0%   {right:0px;}
+  25%  {right:5px;}
+  50% {right:0px;}
+  100% {right:0px;}
+}
+
+#explosive_god
+{position: absolute;
+top: 40px;
+left: 255px;
+font-size: 24px;
+z-index: 3;
+display: none;}
+
+#explosion_1
+{position: absolute;
+top: 30px;
+left: 280px;
+z-index: 3;
+display: none;}
+
+#explosion_2
+{position: absolute;
+top: 15px;
+left: 310px;
+font-size: 24px;
+z-index: 3;
+display: none;}
+
+.bordure_barre_de_progression
+{position: absolute;
+top: -2px;
+left: -2px;
+width: 240px;
+height:20px;
+background-color: rgb(255, 248, 248, 0);
+border: 3px solid;
+border-radius: 10px;}
+
+.Cadre_de_barre_de_progression
+{position: relative;
+width: 242px;
+height:22px;
+background-color: rgb(255, 248, 248);
+border-radius: 5px;}
+
+.Niveau_de_barre_de_progression
+{position: relative;
+width: 0%;
+height: 22px;
+background-color: #FF7878;
+border-radius: 5px;}
+
+.grey_line
+{background-color: none;
+background-image: none;
+color: #555;}
+
+.grey_Cadre_de_barre_de_progression
+{display: none;}
+
+.grey_Niveau_de_barre_de_progression
+{position: relative;
+width: 0%;
+height: 20px;
+background-color: #777;}
+
+.text_progress_bar_green
+{position:absolute;
+top: 2px;
+left: 3px;
+font-size:14px;
+font-weight: normal;
+text-shadow: 1px 1px #000;
+color: #00E000;}
+
+.text_progress_bar_yellow
+{position:absolute;
+top: 2px;
+left: 3px;
+font-size:14px;
+font-weight: normal;
+text-shadow: 1px 1px #000;
+color: #CCCC00;}
+
+.text_progress_bar_orange
+{position:absolute;
+top: 2px;
+left: 3px;
+font-size:14px;
+font-weight: normal;
+text-shadow: 1px 1px #000;
+color: #FF5500;}
+
+.text_progress_bar_purple
+{font-size:14px;
+font-weight: normal;
+text-shadow: 1px 1px #000;
+color: #90F;}
+
+.counter_stocks
+{text-shadow: 1px 1px #000;
+color: #00E000;}
+
+.gains_element_indicator
+{display: none;}
+
+#talents_management_bar
+{padding: 4px;
+text-align: left;}
+
+#Body_artwork
+{display: none;
+position: absolute;
+left: 20px;
+height: 40px;
+width: 500px;}
+
+.counter_creations
+{text-shadow: 1px 1px #000;
+color: #00E000;}
+/* God world - end */
+
+/* Fundamental experience - start */
+#corps_fundamental_experience
+{}
+
+#title_fundamental_experience
+{top: 158px;
+left: 15px;}
+
+.skin_corps_fundamental_experience
+{color: #44DD44;
+text-shadow: 1px 1px #030;
+background-color: #B1F0D1;
+background-image: radial-gradient(at 0px 98px, #B1F0D1 5%, #040);}
+
+.skin_title_fundamental_experience
+{color: #31F051;
+text-shadow: 1px 1px #000;
+background-color: #B1F0D1;
+background-image: none;}
+
+.skin_title_fundamental_experience:hover
+{background-image: none;}
+
+	/* Fundamental buttons - start */
+	.fundamental_talent
+	{font-size: 12px;
+	height: 22px;
+	position: absolute;
+	width: 144px;}
+
+	.style_talent
+	{display: none;}
+
+	.fundamental_talent_button
+	{font-size: 12px;
+	height: 22px;
+	position: absolute;
+	width: 144px;
+	background-color: #F80;
+	background-image: linear-gradient(to right, #F80, #630, #000);
+	color: #31F051;
+	border-color: #777;}
+	
+	.fundamental_talent_button:hover
+	{background-image: linear-gradient(to left, #FC4, #974, #444);}
+
+	.highlighted_talent_button
+	{font-size: 12px;
+	height: 22px;
+	position: absolute;
+	width: 144px;
+	background-color: #FFD;
+	background-image: linear-gradient(to right, #F80, #630, #000);
+	/*background-image: linear-gradient(to right, #FFD, #980);*/
+	color: gold;
+	border-color: gold;}
+	
+	.highlighted_talent_button:hover
+	{background-image: linear-gradient(to left, #FC4, #974, #444);}
+	
+	.maxed_talent_button
+	{background-color: #FFD;
+	background-image: linear-gradient(to right, #BFB, #050);}
+	
+	.maxed_talent_button:hover
+	{background-image: linear-gradient(to left, #BFB, #050);}
+	
+	#Mysterious_black_square
+	{position: absolute;
+	top: 10px;
+	left: 10px;
+	height: 125px;
+	width: 200px;
+	border-radius: 5px;
+	background-color: black;
+	color: white;
+	font-size: 36px;}
+	
+	#Content_mysterious_black_square
+	{position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);}
+	
+	#opened_black_square
+	{position: absolute;
+	height: 125px;
+	width: 200px;
+	line-height:110px;
+	border-radius: 5px;
+	background-color: black;
+	background-image: radial-gradient(circle, white, black);
+	color: white;
+	font-size: 60px;
+	cursor: pointer;}
+	
+	#mysterious_button
+	{height: 48px;
+	width: 60px;
+	color: #EEE;
+	background-color: #FFF;
+	background-image: linear-gradient(to left, #FFF, #EEE);
+	font-size: 18px;
+	}
+	
+	#Infos_talent_tree
+	{position: absolute;
+	top: 7px;
+	right: 12px;
+	height: 24px;
+	line-height: 24px;
+	width: 24px;
+	text-align: center;
+	background-color: #EAEAEF;
+	background-image: radial-gradient(#AFA, #050);
+	color: #000;
+	border-radius: 24px;
+	font-size: 16px;}
+
+	#God_repellent
+	{bottom: 8px;
+	left: 90px;}
+
+	#Quick_mix
+	{bottom: 45px;
+	left: 180px;}
+
+	#Industrialization
+	{bottom: 105px;
+	left: 220px;}
+
+	#Energy_fountain
+	{bottom: 80px;
+	left: 125px;}
+	
+	#Frenzy
+	{bottom: 55px;
+	left: 5px;}
+	
+	#Lazy_convert
+	{bottom: 120px;
+	left: 10px;}
+	
+	#Bully_detector
+	{bottom: 150px;
+	left: 10px;}
+	
+	#Step_up
+	{bottom: 180px;
+	left: 10px;}
+	
+	#Multitasking
+	{bottom: 250px;
+	left: 20px;}
+	
+	#Octogod
+	{bottom: 315px;
+	left: 10px;}
+	
+	#Unstoppable
+	{bottom: 345px;
+	left: 10px;}
+
+	#Twins
+	{bottom: 155px;
+	left: 230px;}
+
+	#One_equals_more
+	{bottom: 185px;
+	left: 210px;}
+	
+	#Hourglass_tapping
+	{bottom: 220px;
+	left: 230px;}
+
+	#Artwork
+	{bottom: 225px;
+	left: 70px;}
+
+	#Multiwork
+	{bottom: 285px;
+	left: 75px;}
+
+	#Concentrated_Toenail
+	{bottom: 425px;
+	left: 220px;}
+
+	#Concentrated_Toe
+	{bottom: 400px;
+	left: 220px;}
+
+	#Concentrated_Foot
+	{bottom: 375px;
+	left: 220px;}
+
+	#Concentrated_Leg
+	{bottom: 350px;
+	left: 220px;}
+
+	#Concentrated_Hand
+	{bottom: 275px;
+	left: 220px;}
+
+	#Concentrated_Arm
+	{bottom: 250px;
+	left: 220px;}
+
+	#Concentrated_Belly
+	{bottom: 325px;
+	left: 220px;}
+
+	#Concentrated_Chest
+	{bottom: 300px;
+	left: 220px;}
+
+	#Concentrated_Head
+	{bottom: 475px;
+	left: 220px;}
+
+	#Concentrated_Genitals
+	{bottom: 450px;
+	left: 220px;}
+
+
+	#Life_saver
+	{bottom: 8px;
+	right: 65px;}
+
+	#Money_saver
+	{bottom: 50px;
+	right: 65px;}
+	
+	#Tip
+	{bottom: 85px;
+	right: 160px;}
+	
+	#Real_esthete
+	{bottom: 130px;
+	right: 200px;}
+	
+	#Real_estate
+	{bottom: 200px;
+	right: 150px;}
+	
+	#Crap_saver
+	{bottom: 115px;
+	right: 45px;}
+	
+	#Chain_of_production
+	{bottom: 165px;
+	right: 25px;}
+	
+	#Optimized_processes
+	{bottom: 250px;
+	right: 60px;}
+	
+	#Classy_school
+	{bottom: 325px;
+	right: 20px;}
+	
+	#Wide_teaching
+	{bottom: 370px;
+	right: 130px;}
+	
+	#Quick_persuasion
+	{bottom: 430px;
+	right: 67px;}
+	
+	#Scaling
+	{bottom: 456px;
+	right: 67px;}
+	
+	/* Fundamental buttons - end */
+
+	/* Fundamental links - start */
+	.fundamental_link
+	{position: absolute;
+	width: 12px;
+	background-color: yellow;
+	background-image: linear-gradient(to right, #F80, #630, #000);
+	z-index:-1;}
+
+	.style_link
+	{display: none;
+	position: absolute;
+	width: 12px;
+	background-color: yellow;
+	background-image: linear-gradient(to right, #F80, #630, #000);
+	z-index:-1;}
+	
+	#Energy_trunk
+	{height: 20px;
+	bottom: 0px;
+	left: 140px;
+	width: 40px;}
+	
+	#Style_trunk
+	{height: 20px;
+	bottom: 0px;
+	right: 116px;
+	width: 40px;}
+
+	#God_repellent_to_Lazy_convert
+	{height: 90px;
+	bottom: 30px;
+	left: 105px;}
+
+	#God_repellent_to_Energy_fountain
+	{height: 50px;
+	bottom: 30px;
+	left: 155px;}
+	
+	#God_repellent_to_Quick_mix
+	{height: 20px;
+	bottom: 30px;
+	left: 200px;}
+	
+	#Lazy_convert_to_Step_up
+	{height: 60px;
+	bottom: 130px;
+	left: 75px;}	
+
+	#Quick_mix_to_Industrialization
+	{height: 52px;
+	bottom: 60px;
+	left: 280px;}
+
+	#Industrialization_to_Twins
+	{height: 32px;
+	bottom: 125px;
+	left: 290px;}
+
+	#Twins_to_One_equals_more
+	{height: 32px;
+	bottom: 175px;
+	left: 285px;}
+	
+	#One_equals_more_to_Hourglass_tapping
+	{height: 32px;
+	bottom: 195px;
+	left: 290px;}
+
+	#Step_up_to_Multitasking
+	{height: 55px;
+	bottom: 195px;
+	left: 50px;}
+	
+	#Multitasking_to_Octogod
+	{height: 70px;
+	bottom: 255px;
+	left: 40px;}
+	
+	#Octogod_to_Unstoppable
+	{height: 15px;
+	bottom: 335px;
+	left: 75px;}
+	
+	#Multitasking_to_Multiwork
+	{height: 30px;
+	bottom: 270px;
+	left: 115px;}
+
+	#Hourglass_tapping_to_Concentrated_Arm
+	{height: 32px;
+	bottom: 220px;
+	left: 280px;}
+
+	#Concentrated_Arm_to_Concentrated_Head
+	{height: 220px;
+	bottom: 270px;
+	left: 290px;}
+
+	#Artwork_to_Multiwork
+	{height: 50px;
+	bottom: 240px;
+	left: 175px;}
+
+	#Life_saver_to_Money_saver
+	{height: 40px;
+	bottom: 30px;
+	right: 130px;}
+	
+	#Money_saver_to_Tip
+	{height: 30px;
+	bottom: 70px;
+	right: 180px;}
+	
+	#Tip_to_Real_esthete
+	{height: 30px;
+	bottom: 105px;
+	right: 250px;}
+	
+	#Real_esthete_to_Real_estate
+	{height: 60px;
+	bottom: 145px;
+	right: 260px;}
+	
+	#Money_saver_to_Crap_saver
+	{height: 50px;
+	bottom: 70px;
+	right: 125px;}
+	
+	#Crap_saver_to_Chain_of_production
+	{height: 40px;
+	bottom: 130px;
+	right: 105px;}
+	
+	#Chain_of_production_to_Optimized_processes
+	{height: 80px;
+	bottom: 180px;
+	right: 90px;}
+	
+	#Real_estate_to_Optimized_processes
+	{height: 40px;
+	bottom: 215px;
+	right: 175px;}
+	
+	#Optimized_processes_to_Classy_school
+	{height: 70px;
+	bottom: 260px;
+	right: 75px;}
+	
+	#Optimized_processes_to_Wide_teaching
+	{height: 120px;
+	bottom: 260px;
+	right: 168px;}
+	
+	#Wide_teaching_to_Quick_persuasion
+	{height: 50px;
+	bottom: 385px;
+	right: 144px;}
+	
+	#Classy_school_to_Quick_persuasion
+	{height: 100px;
+	bottom: 335px;
+	right: 114px;}
+	
+	#Quick_persuasion_to_Scaling
+	{height: 20px;
+	bottom: 445px;
+	right: 129px;}
+	
+	/* Fundamental links - end */
+/* Fundamental experience - end */
+
+
+/* Human world - start */
+#corps_human_world
+{z-index: 3;}
+
+#title_human_world
+{top: 221px;}
+
+.skin_corps_human_world
+{color: #B00;
+text-shadow: 1px 1px #000;
+background-color: #F55;
+background-image: radial-gradient(at 0px 161px, #F55 5%, #A00);}
+
+.skin_title_human_world
+{color: black;
+text-shadow: 1px 1px #F00;
+background-color: #F55;
+background-image: none;}
+
+.skin_title_human_world:hover
+{background-image: none;}
+
+#list_human_world_titles
+{padding-left: 10px;}
+
+.title_building
+{background-color: grey;
+background-image: none;
+color: #333;
+border:none;
+border-radius: 5px 5px 0px 0px;}
+
+.no_padding
+{padding: 0px;}
+
+#unlocker
+{position: absolute;
+height: 30px;
+margin-top: -35px;
+margin-left: 50%;
+padding-bottom: 7px;
+background-color: #F55;
+background-image: linear-gradient(to right, #DA3030, #CE2525);
+border-radius: 5px 5px 0px 0px;
+border-bottom: none;
+border-color: red;
+display: none;
+}
+
+#star_snow
+{position: absolute;
+top: 0px;
+right: 114px;
+color: grey;
+font-size: 24px;
+font-weight: normal;
+text-shadow: none;
+cursor: pointer;
+display: none;}
+
+#droplet
+{position: absolute;
+top: 6px;
+right: 98px;
+text-shadow: none;
+cursor: pointer;
+display: none;}
+
+.frozenjuice
+{position: absolute;
+right: 45px;
+color: white;
+text-shadow: 1px 1px #0000FF;
+z-index: 3;
+pointer-events: none;
+display: none;}
+
+#frozenjuice1
+{top: -8px;
+font-size: 10px;}
+
+#frozenjuice2
+{top: -22px;
+font-size: 12px;}
+
+#frozenjuice3
+{top: -38px;
+right: 60px;
+font-size: 14px;}
+
+#multiplicator_button
+{position: absolute;
+top: 5px;
+right: 15px;
+height: 25px;}
+
+.human_world_body
+{position: absolute;
+width: 640px;
+height: 455px;
+bottom: 10px;
+right: 10px;
+padding: 5px;
+border-radius: 5px;
+z-index: 1;}
+
+.description_button
+{position: absolute;
+top: 7px;
+right: 12px;
+height: 24px;
+line-height: 24px;
+width: 24px;
+text-align: center;
+background-color: #EAEAEF;
+background-image: radial-gradient(#FFF, #F00);
+color: #000;
+border-radius: 24px;
+font-size: 16px;}
+
+.buy_building_button
+{border-radius: 35px;
+width: 585px;
+height: 100px;
+background-color: #FFA500;
+background-image: linear-gradient(to bottom, #F5F482 , #FFA500);
+color: #85bb65;
+font-size: 24px;}
+
+.buy_building_frozen_button
+{border-radius: 35px;
+width: 585px;
+height: 100px;
+background-color: #FFA500;
+background-image: linear-gradient(to bottom, #FFF , #8CC);
+color: #85bb65; /*#8CC  #FFA500*/
+font-size: 24px;}
+
+.round_button
+{width: 30px;
+border-radius: 20px;}
+
+.plus_minus_button
+{padding-bottom: 2px;
+padding-left: 6px;}
+
+.arrow_button
+{padding-bottom: 2px;
+padding-left: 7px;}
+
+.buy_upgrade_span
+{position: absolute;
+top: 5px;
+right: 5px;}
+
+.locked_price
+{position: relative;
+right: 45px;}
+
+
+	/* Workers - start */
+	#corps_Workers
+	{z-index: 2;}
+	
+	#title_Workers
+	{background-color: #FFF;
+	background-image: none;
+	color: #000;
+	text-shadow: 1px 1px #F00;
+	font-weight: bold;}
+
+	#header_workers
+	{position: absolute;
+	width: 640px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: transparent;
+	text-align: right;
+	z-index: 2;}
+
+	#cadre_de_barre_de_progression_workers
+	{position: absolute;
+	width: 650px;
+	height:466px; /* should be 465px, but Chrome doesn't overlay properly, so 1px is added */
+	top: 0px;
+	left: 0px;
+	border-radius: 5px;
+	background-color: #FFF8F8;
+	background-image: linear-gradient(to bottom, #FFF, #135);
+	z-index: 1;}
+	
+	#workers_attractor
+	{display: none;}
+	
+	#tooltip_workers_attractor
+	{position: absolute;
+	right: 45px;}
+	
+	#magic_gathering_button
+	{background-color: rgb(140,80,30);
+	background-image: linear-gradient(to right, #FFFFFF , rgb(140,80,30));
+	color: rgb(140,80,30);
+	border-color: rgb(140,80,30);}
+	
+	#magic_gathering_button:hover
+	{background-image: linear-gradient(to left, #FFFFFF , rgb(140,80,30));}
+
+	#progress_bar_workers
+	{position: relative;
+	width: 650px;
+	height: 0%;
+	top: 100%;
+	border-radius: 5px;
+	background-color: white;
+	background-image: linear-gradient(to bottom, #FFF, #E90022);
+	z-index: 1;}
+
+	#text_progress_bar_workers
+	{position: absolute;
+	text-align: right;
+	bottom: 2px;
+	right: 5px;}
+	
+	.workers_upgrades
+	{position: relative;
+	left: 10px;
+	width: 435px;
+	height: 95px;
+	padding: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 35px;
+	background-color: rgb(255, 170, 170, 0.8);
+	/*background-image: linear-gradient(to bottom right, #FFF, #FAA);*/
+	background-image: linear-gradient(to bottom right, rgb(255, 255, 255, 0.7), rgb(255, 170, 170, 0.7));
+	border: 2px solid rgb(255, 214, 214, 0.7);
+	color: #90F;
+	text-shadow: 1px 1px #000;
+	font-size: 20px;
+	font-family: Helvetica;
+	opacity: 1.0;
+	z-index: 1;}
+
+	.name_upgrade
+	{position: absolute;
+	left: 35%;
+	top: 5px;
+	transform: translate(-50%);
+	text-align: center;
+	opacity: 1.0;
+	z-index: 2;}
+	
+	.workers_picture
+	{position: absolute;
+	left: 15px;
+	top: 30px;
+	opacity: 1.0;
+	z-index: 2;}
+	
+	.profits_upgrade
+	{position: absolute;
+	left: 35%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 48px;
+	color: #C00;
+	opacity: 0.3;
+	z-index: 1;}
+
+	.comment_upgrade
+	{position: absolute;
+	bottom: 5px;
+	left: 35%;
+	transform: translate(-50%);
+	font-size: 14px;
+	text-align: center;
+	color: #848484;
+	opacity: 1.0;
+	z-index: 2;}
+
+	.buy_workers_upgrade_button
+	{border-radius: 35px;
+	width: 150px;
+	height: 100px;
+	background-color: #FFA500;
+	background-image: linear-gradient(to bottom, #F5F482 , #FFA500);
+	color: #85bb65;
+	font-size: 24px;
+	opacity: 1.0;}
+	
+	#green_gauntlet_button
+	{position: absolute;
+	top: 35px;
+	left: 15px;}
+	/* Workers - end */
+
+	/* Brothels - start */
+	#corps_Brothels_behind
+	{top: 35px;
+	left: 10px;
+	background-color: #DDD;
+	background-image: linear-gradient(to bottom, #DDD, #421C52);}
+	
+	#corps_Brothels
+	{width: 635px;
+	top: 0px;
+	left: 0px;
+	background-color: #DDD;
+	background-image: linear-gradient(to bottom, #DDD, #421C52);
+	overflow: auto;
+	z-index: -1;}
+	
+	#title_Brothels
+	{background-color: #DDD;
+	background-image: none;
+	color: #000;
+	text-shadow: 1px 1px #F00;}
+	
+	#span_razzia_button
+	{font-weight: normal;
+	font-family: arial;
+	z-index: 3}
+	
+	.brothel
+	{position: relative;
+	width: 555px;
+	height: 95px;
+	left: 8px;
+	padding: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 35px;
+	background-color: #AAF;
+	background-image: linear-gradient(to bottom right, #FFF, #AAF);
+	color: #B00;
+	text-shadow: 1px 1px #000;
+	border: 2px solid #AAF;
+	font-size: 14px;
+	font-family: Helvetica;}
+	
+	.name_of_building
+	{text-align: center;
+	font-weight: bold;}
+	
+	.first_line_brothel
+	{position: relative;
+	top: -2px;
+	height: 14px;
+	text-align: center;}
+	
+	.additional_infos_brothels
+	{margin-left: auto;
+	margin-right: auto;
+	border-collapse: collapse;
+	border: 1px solid #000000;}
+	
+	.default_background_brothel
+	{background-color: #AAF;
+	background-image: linear-gradient(to bottom right, #FFF, #AAF);
+	border-color: #AAF;}
+	
+	.activated_brothel
+	{background-color: #BFB;
+	background-image: linear-gradient(to bottom right, #EFE, #5C5);
+	border-color: #5C5;}
+	
+	.orange_brothel
+	{background-color: #FD0;
+	background-image: linear-gradient(to bottom right, #FFF, #EB8);
+	border-color: #FB5;}
+
+	.wannabe_activated_brothel
+	{background-color: #FDD;
+	background-image: linear-gradient(to bottom right, #FEE, #C55);
+	border-color: #C55;}
+
+	.milk_brothel
+	{background-color: #FFF;
+	background-image: linear-gradient(to bottom right, #FFF, #EEE);
+	border-color: #CCC;}
+	
+	.buy_brothel_button
+	{border-radius: 35px;
+	width: 585px;
+	height: 100px;
+	background-color: #FFA500;
+	background-image: linear-gradient(to bottom, #F5F482 , #FFA500);
+	color: #85bb65;
+	font-size: 24px;}
+	
+	#specific_brothel
+	{position: absolute;
+	top: 5px;
+	right: 80px;
+	background-color: black;}
+	
+	#casinothel_button
+	{position: absolute;
+	padding: 1px;
+	font-size: 32px;}
+	
+	#casinothel_button_text
+	{position: relative;
+	top: -12px;}
+	
+	#zoutopia_button
+	{position: absolute;}
+	
+	#zoutopia_button_text
+	{position: relative;
+	top: -2px;}
+	
+	#brollywood_button
+	{position: absolute;}
+	
+	#brollywood_button_text
+	{position: relative;}
+	
+	#virtual_button
+	{position: absolute;}
+	
+	#virtual_button_text
+	{position: relative;}
+	
+	/* Brothels - end */
+	
+	/* Factory - start */	
+	#corps_Factories
+	{top: 35px;
+	left: 10px;
+	background-color: #BBB;
+	background-image: linear-gradient(to bottom, #BBB, #b87333);}
+
+	#Body_Factories
+	{width: 635px;
+	top: 0px;
+	left: 0px;
+	background-color: #BBB;
+	background-image: linear-gradient(to bottom, #BBB, #b87333);
+	overflow: auto;
+	z-index: 3;}
+	
+	#title_Factories
+	{background-color: #BBB;
+	background-image: none;
+	color: #000;
+	text-shadow: 1px 1px #F00;}
+	
+	.factory
+	{position: relative;
+	width: 555px;
+	height: 95px;
+	left: 8px;
+	padding: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 35px;
+	background-color: #AAF;
+	background-image: linear-gradient(to bottom right, #FFF, #cb6d51);
+	border: 2px solid;
+	border-color: #cb6d51;
+	font-size: 14px;
+	font-family: Helvetica;}
+	
+	.Cadre_de_barre_de_progression_factories
+	{position: relative;
+	width: 240px;
+	height:20px;
+	background-color: rgb(255, 248, 248);
+	border-radius: 5px;}
+	
+	.factory_level
+	{position: absolute;
+	height: 20px;
+	width: 20px;
+	border-radius: 20px;
+	background-image: none;
+	/*border-color: #ADE;*/
+	border-color: #777;}
+	
+	.current_factory
+	{background-color: #FFD800;}
+	
+	.activable_factory
+	{background-color: green;}
+	
+	.upgrade_waiting
+	{background-color: #6AF;}
+	
+	.locked_factory
+	{background-color: #444;}
+	
+	.inactive_bonus_factory
+	{background-color: #add8e6;}
+	
+	.active_bonus_factory
+	{background-color: #40e0d0;} /* changer la couleur pour etre a mis chemin entre "inactive_bonus_factory" et "active_factory" */
+	
+	.level_0
+	{right: 110px;
+	bottom: 10px;}
+	
+	.level_1
+	{right: 90px;
+	bottom: 10px;}
+	
+	.level_2
+	{right: 70px;
+	bottom: 10px;}
+	
+	.level_3
+	{right: 50px;
+	bottom: 10px;}
+	
+	.level_4
+	{right: 30px;
+	bottom: 10px;}
+	
+	.buy_factory_button
+	{border-radius: 35px;
+	width: 585px;
+	height: 100px;
+	background-color: #FFA500;
+	background-image: linear-gradient(to bottom, #F5F482 , #FFA500);
+	color: #85bb65;
+	font-size: 24px;}
+	/* Factory - end */
+	
+	/* Temple - start */
+	#corps_Temple
+	{position: absolute;
+	width: 640px;
+	height:455px;
+	top: 35px;
+	left: 10px;
+	border-radius: 5px;
+	background-color: #999;
+	background-image: linear-gradient(to bottom, #999, rgba(173, 216, 230, 1));
+	/*background-image: url("Images/Temple_background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;*/
+	z-index: 1;}
+	
+	#title_Temple
+	{background-color: #999;
+	background-image: none;
+	color: #000;
+	text-shadow: 1px 1px #F00;}
+	
+	#attributed_workers_temple
+	{position: absolute;
+	left: 50px;}
+	
+	#cadre_de_barre_de_progression_worshipers
+	{position: absolute;
+	left: 50px;
+	height: 100px;
+	background-color: #F00;}
+	
+	#progress_bar_worshipers
+	{position: relative;
+	height: 0%;
+	font-size: 120px;
+	background-color: #4F4;}
+	
+	#image_progress_bar_worshipers
+	{position: relative;
+	top: -36px;
+	pointer-events: none;}
+	
+	#genitals_window
+	{position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 440px;
+	height: 150px;
+	padding: 5px;
+	border-radius: 10px;
+	border: 5px solid;
+	border-color: #add8e6;
+	background-color: #8AA5B3;
+	background-image: linear-gradient(to bottom right, #FFF, #8AA5B3);}
+	
+	#autotransfer_genitals
+	{position: absolute;
+	top: 100px;
+	left: 170px;}
+	
+	.temple_labo_window
+	{position: relative;
+	width: 555px;
+	height: 95px;
+	left: 8px;
+	padding: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 35px;
+	border: 2px solid;
+	border-color: #add8e6;
+	background-color: #8AA5B3;
+	background-image: linear-gradient(to bottom right, #FFF, #8AA5B3);
+	font-size: 14px;
+	font-family: Helvetica;}
+	/* Temple - end #add8e6;*/
+	
+	/* Laboratory - start */
+	#corps_Laboratory
+	{position: absolute;
+	width: 640px;
+	height:455px;
+	top: 35px;
+	left: 10px;
+	border-radius: 5px;
+	background-color: #777;
+	background-image: linear-gradient(to bottom, #777, #2df31a);
+	z-index: 1;}
+	
+	#title_Laboratory
+	{background-color: #777;
+	background-image: none;
+	color: #000;
+	text-shadow: 1px 1px #F00;}
+	
+	#button_kill_the_scientist
+	{position: absolute;
+	top: 40px;
+	right: 10px;}
+	
+	
+	#Body_laboratory_alternative
+	{display: none;
+	position: absolute;
+	width: 650px;
+	height:465px;
+	top: 0px;
+	border-radius: 5px;
+	background-color: #a5c5d9;
+	background-image: linear-gradient(to bottom, #777, #a5c5d9, #C5E5F9, #DAF1FF, #FFF);
+	font-size: 48px;
+	font-weight: bold;
+	text-align: center;
+	left: 0px;}
+	
+	#stock_body_parts_laboratory
+	{width: 580px;}
+	
+	#upgrades_laboratory
+	{height: 258px;
+	overflow: auto;}
+	
+	.energy_labo_window
+	{position: relative;
+	width: 555px;
+	height: 95px;
+	left: 8px;
+	padding: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 35px;
+	border: 2px solid #484;
+	background-color: #040;
+	background-image: linear-gradient(to bottom right, #FFF, #040);
+	font-size: 14px;
+	font-family: Helvetica;}
+	
+	.workers_labo_window
+	{position: relative;
+	width: 555px;
+	height: 95px;
+	left: 8px;
+	padding: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 35px;
+	border: 2px solid #FFD6D6;
+	background-color: #AAF;
+	background-image: linear-gradient(to bottom right, #FFF, #FAA);
+	font-size: 14px;
+	font-family: Helvetica;}
+	/* Laboratory - end */
+	
+	/* Schools - start */
+	#corps_Schools
+	{position: absolute;
+	width: 640px;
+	height:455px;
+	top: 35px;
+	left: 10px;
+	border-radius: 5px;
+	background-color: #555;
+	background-image: linear-gradient(to bottom, #555, #E8E8E8);
+	z-index: 1;}
+	
+	#title_Schools
+	{background-color: #555;
+	background-image: none;
+	color: #000;
+	text-shadow: 1px 1px #F00;}
+	
+	.school
+	{position: relative;
+	width: 555px;
+	height: 95px;
+	left: 8px;
+	padding: 8px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 35px;
+	background-color: #CCC;
+	background-image: linear-gradient(to bottom right, #FF8 5%, #88F, #8F8, #F8F, #8FF, #F88);
+	border: 2px solid #AAF;
+	font-size: 14px;
+	font-family: Helvetica;}
+	
+	.buy_school_upgrade_button
+	{border-radius: 35px;
+	width: 585px;
+	height: 100px;
+	background-color: #FFA500;
+	background-image: linear-gradient(to bottom, #F5F482 , #FFA500);
+	color: #85bb65;
+	font-size: 24px;}
+	
+	#reassign_button
+	{position: absolute;
+	left: 270px;
+	top: 10px;
+	background-color: rgb(140,80,30);
+	background-image: linear-gradient(to right, #FFFFFF , rgb(140,80,30));
+	color: rgb(140,80,30);
+	border-color: rgb(140,80,30);
+	}
+	
+	#reassign_button:hover
+	{background-image: linear-gradient(to left, #FFFFFF , rgb(140,80,30));}
+	/* Schools - end */
+	
+	/* Lobby - start */
+	#corps_Lobby
+	{position: absolute;
+	width: 640px;
+	height:455px;
+	top: 35px;
+	left: 10px;
+	border-radius: 5px;
+	background-color: #333;
+	background-image: linear-gradient(to bottom, #333, #B19CD9);
+	z-index: 1;}
+	
+	#title_Lobby
+	{background-color: #333;
+	background-image: none;
+	color: #000;
+	text-shadow: 1px 1px #F00;}
+	
+	#page_changer_lobby
+	{position: absolute;
+	top: 5px;
+	right: 5px;}
+	
+	#influence_points_value
+	{position: absolute;
+	top: 7px;
+	left: 15px;
+	padding: 5px;
+	background-color: #EAEAEF;
+	background-image: none;
+	border: 1px solid #006C00;
+	color: #006C00;
+	border-radius: 5px;
+	padding-left: 30px;}
+	
+	#bordure_barre_de_progression_Lobby
+	{position: absolute;
+	top: -10px;
+	left: -10px;
+	width: 600px;
+	height: 120px;
+	background-color: rgb(255, 248, 248, 0);
+	border: 10px solid #404;
+	border-radius: 200px;}
+
+	#Cadre_de_barre_de_progression_Lobby
+	{position: absolute;
+	left: 25px;
+	bottom: 20px;
+	width: 600px;
+	height: 120px;
+	background-color: #FDF;
+	border-radius: 200px;}
+	/*sauvegarde ancienne couleur: #FBB*/
+
+	.Niveau_de_barre_de_progression_Lobby
+	{position: relative;
+	top: -1px;
+	height: 122px;
+	/*background-color: #FF7878;*/
+	background-color: #404;
+	border-radius: 150px;
+	/*
+	background-image: linear-gradient(to bottom, #BBB, #FFF, #BBB);
+	background-image: linear-gradient(to bottom, #8D8, #FFF, #060);
+	background-image: linear-gradient(to bottom, #b08d57, #FFF, #b08d57);
+	background-image: linear-gradient(to bottom, #cd7f32, #FFF, #cd7f32);
+	*/
+	background-image: linear-gradient(to bottom, #404, #FFF, #404);}
+	
+	#top_left_circle_Lobby, #bottom_left_circle_Lobby, #top_right_circle_Lobby, #bottom_right_circle_Lobby
+	{position: absolute;
+	height: 25px;
+	width: 50px;
+	background-color: #404;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;}
+	
+	#top_left_circle_Lobby
+	{top: -5px;
+	left: -17px;
+	transform: rotate(315deg);}
+	
+	#bottom_left_circle_Lobby
+	{top: 100px;
+	left: -17px;
+	transform: rotate(225deg);}
+	
+	#top_right_circle_Lobby
+	{top: -5px;
+	right: -17px;
+	transform: rotate(45deg);}
+	
+	#bottom_right_circle_Lobby
+	{top: 100px;
+	right: -17px;
+	transform: rotate(135deg);}
+	
+	.profits_upgrade_Lobby
+	{position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 72px;
+	color: #C00;
+	opacity: 0.3;
+	z-index: 1;}
+	
+	#infos_bar_Lobby
+	{position: absolute;
+	left: 30px;
+	bottom: 160px;}
+	/* Lobby - end */
+	
+/* Human world - end */
+
+
+/* Prestige - start */
+#corps_prestige
+{font-style: oblique;}
+
+#title_prestige
+{top: 284px;
+font-style: oblique;}
+
+.skin_corps_prestige
+{color: #FFD700;
+text-shadow: 1px 1px #000;
+background-color: #FFF;
+background-image: linear-gradient(to right, #F5F4F2, #C0C0C0);}
+
+.skin_title_prestige
+{color: #FFD700;
+text-shadow: 1px 1px #000;
+background-color: #F5F4F2;
+background-image: none;}
+
+.skin_title_prestige:hover
+{background-image: none;}
+
+#prestige_management_bar
+{height: 40px;
+margin-top: 5px;
+margin-left: 5px;}
+	
+#Cadre_de_barre_de_progression_prestige
+{position: absolute;
+left: 220px;
+top: 10px;}
+
+#Break_the_Deal
+{position: absolute;
+top: 5px;
+right: 5px;}
+
+#Gods_talents
+{width: 660px;
+height: 460px;
+font-size: 20px;}
+
+.Gods_talents_cell
+{position: relative;
+padding: 0px;}
+
+#strength_title
+{text-shadow: 1px 1px #005, 0 0 10px #f00, 0 0 20px #e60073, 0 0 30px #F00}
+
+#strength_triangle
+{animation: glow_strength 0.2s ease-in-out infinite alternate;}
+
+@-webkit-keyframes glow_strength {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #F00, 0 0 40px #f60073, 0 0 50px #f60023, 0 0 60px #e60023, 0 0 70px #e60023;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 60px #F22, 0 0 70px #F22, 0 0 80px #ff4da6, 0 0 90px #ff4d46, 0 0 100px #ff4d46, 0 0 110px #ff4d46;
+  }
+}
+
+#beauty_title
+{text-shadow: 1px 1px #005, 0 0 10px #F6C, 0 0 20px #F6C, 0 0 30px #F6C}
+
+#beauty_triangle
+{animation: glow_beauty 1.5s ease-in-out infinite alternate;}
+
+@-webkit-keyframes glow_beauty {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #F6C, 0 0 40px #F6C, 0 0 50px #F6C, 0 0 60px #F6C, 0 0 70px #F6C, 0 0 80px #F6C, 0 0 90px #F6C, 0 0 100px #F6C, 0 0 110px #F6C, 0 0 120px #F6C;
+  }
+  to {
+	text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #F6C, 0 0 40px #F6C, 0 0 50px #F6C;
+  }
+}
+
+#time_title
+{text-shadow: 1px 1px #005, 0 0 10px #00F, 0 0 20px #20F, 0 0 30px #40F}
+
+#time_triangle
+{animation: glow_time 3s cubic-bezier(0.1,0.7,1.0,0.1) infinite;}
+
+@-webkit-keyframes glow_time {
+  from {
+	text-shadow: 0 0 10px #fff, 0 0 20px #FFF;
+  }
+  to {
+	text-shadow: 0 0 10px #fff, 0 0 20px #FFF, 0 0 30px #00F, 0 0 40px #20F, 0 0 50px #30F, 0 0 60px #60F, 0 0 80px #70F, 0 0 100px #60F;
+  }
+}
+
+#science_title
+{text-shadow: 1px 1px #005, 0 0 10px #888, 0 0 20px #666, 0 0 30px #333}
+
+#science_triangle
+{animation: glow_science 1s linear infinite alternate;}
+
+@-webkit-keyframes glow_science {
+  from {
+	text-shadow: 0 0 10px #fff, 0 0 20px #FFF, 0 0 30px #888;
+  }
+  to {
+	text-shadow: 0 0 10px #fff, 0 0 20px #FFF, 0 0 30px #888, 0 0 40px #666, 0 0 50px #444, 0 0 60px #222, 0 0 70px #000;
+  }
+}
+
+#energy_title
+{text-shadow: 1px 1px #005, 0 0 10px #FFF, 0 0 20px #8F8}
+
+#energy_triangle
+{animation: glow_energy 3s ease-in-out infinite alternate;}
+
+/*text-shadow: 0 0 10px #FFF, 0 0 20px #BFB, 0 0 30px #8F8*/
+
+@-webkit-keyframes glow_energy {
+  from {
+	text-shadow: 0 0 5px #FFF;
+  }
+  to {
+	text-shadow: 0 0 10px #FFF, 0 0 20px #BFB, 0 0 30px #8F8;
+  }
+}
+
+.prestige_triangle
+{position: absolute;
+width: 100%;
+height: 100%;
+top: -10%;
+left: 0%;
+font-size: 160px;
+/*text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;*/
+z-index: -2;}
+
+#happy_god_of_energy_ending
+{display: none;}
+/* Prestige - end */
+
+
+/* God of Extortion - start */
+#corps_god_of_extortion
+{}
+
+#title_god_of_extortion
+{top: 347px;}
+
+.skin_corps_god_of_extortion
+{color: #e6e600;
+text-shadow: 1px 1px #000;
+background-color: #664400;
+background-image: radial-gradient(at 0px 287px, #8EE 5%, #044);}
+
+.skin_title_god_of_extortion
+{color: #FA4;
+text-shadow: 1px 1px #000;
+background-color: #8EE;
+background-image: none;}
+
+.skin_title_god_of_extortion:hover
+{background-image: none;}
+	
+	#golden_rings_value
+	{position: absolute;
+	left: 20px;
+	top: 15px;
+	padding: 5px;
+	background-color: #EAEAEF;
+	background-image: none;
+	border: 1px solid #006C00;
+	color: #006C00;
+	border-radius: 5px;
+	padding-left: 30px;
+	text-shadow: initial;}
+	
+	#golden_rings_symbol
+	{color: #FFD700;
+	font-weight: bold;
+	text-shadow: 1px 1px #00F;}
+	
+	#buy_rings_button
+	{position: absolute;
+	top: 55px;
+	left: 10px;}
+	
+	#welcome_offer_button
+	{position: absolute;
+	top: 95px;
+	left: 10px;}
+	
+	.purchase_button
+	{font-size: 12px;
+	height: 22px;
+	position: absolute;
+	width: 140px;
+	background-color: #F80;
+	background-image: linear-gradient(to right, #CFF, #630, #000);
+	color: #31F051;
+	color: #0FF; /*B5F*/
+	border-color: #777;}
+	
+	.locked_purchase_button
+	{font-size: 12px;
+	height: 22px;
+	position: absolute;
+	width: 140px;
+	background-color: #777;
+	background-image: linear-gradient(to right, #FFF, #888, #444);
+	color: #111;
+	border-color: #777;
+	text-shadow: initial;}
+	
+	.maxed_purchase_button
+	{font-size: 12px;
+	height: 22px;
+	position: absolute;
+	width: 140px;
+	background-color: #FFD;
+	background-image: linear-gradient(to right, #BFB, #050);
+	color: #31F051;
+	color: #0FF; /*B5F*/
+	border-color: #777;}
+	
+	.maxed_purchase_button:hover
+	{background-image: linear-gradient(to left, #BFB, #050);}
+	
+	.purchase_link
+	{position: absolute;
+	height:70px;
+	width: 12px;
+	background-color: yellow;
+	background-image: linear-gradient(to right, #CFF, #630, #000);
+	z-index:-1;}
+	
+	.purchase_trunk
+	{height: 20px;
+	bottom: 0px;
+	width: 40px;}
+
+	#Evil_Pact
+	{top: 130px;
+	left: 250px;}
+	
+	#Bullystroyer
+	{top: 240px;
+	left: 250px;}
+	
+	#Obliviate
+	{top: 262px;
+	left: 250px;}
+	
+	#Transversion
+	{top: 340px;
+	left: 135px;}
+	
+	#Maximum_memoriam
+	{top: 362px;
+	left: 135px;}
+	
+	#Incremental_energy
+	{top: 340px;
+	left: 365px;}
+	
+	#Ephemeral_death
+	{top: 362px;
+	left: 365px;}
+	
+	#Hibernate
+	{top: 450px;
+	left: 15px;}
+	
+	#Printing_machine
+	{top: 472px;
+	left: 15px;}
+	
+	#Time_wreaker
+	{top: 450px;
+	left: 175px;}
+	
+	#Copyism
+	{top: 472px;
+	left: 175px;}
+	
+	#Time_disturber
+	{top: 450px;
+	left: 330px;}
+	
+	#Prestigious
+	{top: 472px;
+	left: 330px;}
+	
+	#Premium_skin
+	{top: 450px;
+	left: 485px;}
+	
+	#Discount_skins
+	{top: 472px;
+	left: 485px;}
+	
+	#Trunk_1
+	{left: 65px;}
+	
+	#Trunk_2
+	{left: 225px;}
+	
+	#Trunk_3
+	{left: 380px;}
+	
+	#Trunk_4
+	{left: 540px;}
+	
+	#Link_1
+	{height: 100px;
+	top: 150px;
+	left: 315px;}
+
+	#Link_2
+	{top: 270px;
+	left: 258px;}
+	
+	#Link_3
+	{top: 270px;
+	left: 372px;}
+	
+	#Link_4
+	{top: 382px;
+	left: 140px;}
+	
+	#Link_5
+	{top: 382px;
+	left: 260px;}
+	
+	#Link_6
+	{top: 382px;
+	left: 370px;}
+	
+	#Link_7
+	{top: 382px;
+	left: 490px;}
+	
+	#value_1_hour
+	{position: absolute;
+	top: 20px;
+	right: 16px;
+	padding: 5px;
+	background-color: #EAEAEF;
+	background-image: none;
+	border: 1px solid #006C00;
+	color: #006C00;
+	border-radius: 5px;
+	padding-left: 30px;}
+	
+	#value_24_hours
+	{position: absolute;
+	top: 60px;
+	right: 16px;
+	padding: 5px;
+	background-color: #EAEAEF;
+	background-image: none;
+	border: 1px solid #006C00;
+	color: #006C00;
+	border-radius: 5px;
+	padding-left: 30px;}
+	
+	#discount_skins_main_button
+	{position: absolute;
+	top: 82px;
+	left: 3px;
+	height: 10px;
+	line-height: 10px;
+	width: 10px;
+	text-align: center;
+	background-color: #EAEAEF;
+	background-image: linear-gradient(to top right, #77F , #FFF);
+	color: #006C00;
+	border-radius: 10px;
+	font-size: 8px;
+	cursor: pointer;
+	display: none;}
+	
+	.CLASS_change_skin
+	{position: absolute;
+	font-size: 10px;
+	cursor: pointer;
+	display: none;}
+	
+	#change_skin_god_world
+	{top: 117px;
+	left: 2px;}
+	
+	#change_skin_fundamental_experience
+	{top: 180px;
+	left: 2px;}
+	
+	#change_skin_human_world
+	{top: 243px;
+	left: 2px;}
+
+	#change_skin_prestige
+	{top: 306px;
+	left: 2px;}
+	
+	#change_skin_god_of_extortion
+	{top: 369px;
+	left: 2px;}
+	
+	#change_skin_statistics
+	{top: 432px;
+	left: 2px;}
+	
+	#change_skin_encyclopedia
+	{top: 495px;
+	left: 2px;}
+
+	#change_skin_settings
+	{top: 558px;
+	left: 2px;}
+		
+	.skin_corps_1
+	{color: #FFF;
+	text-shadow: 1px 1px #000;
+	background-color: #777;
+	background-image: linear-gradient(to right, #FFF , #000);}
+
+	.skin_title_1
+	{color: #FFF;
+	text-shadow: 1px 1px #000;
+	background-color: #FFF;
+	background-image: none;}
+
+	.skin_title_1:hover
+	{background-image: none;}
+	
+	.skin_corps_2
+	{color: #0FF;
+	text-shadow: 1px 1px #000;
+	background-color: #FCC;
+	background-image: linear-gradient(to right, #FCC , #800);}
+
+	.skin_title_2
+	{color: #0FF;
+	text-shadow: 1px 1px #000;
+	background-color: #FCC;
+	background-image: none;}
+
+	.skin_title_2:hover
+	{background-image: none;}
+	
+	.skin_corps_3
+	{color: #F0F;
+	text-shadow: 1px 1px #000;
+	background-color: #CFC;
+	background-image: linear-gradient(to right, #CFC , #080);}
+
+	.skin_title_3
+	{color: #F0F;
+	text-shadow: 1px 1px #000;
+	background-color: #CFC;
+	background-image: none;}
+
+	.skin_title_3:hover
+	{background-image: none;}
+	
+	.skin_corps_4
+	{color: #FF0;
+	text-shadow: 1px 1px #000;
+	background-color: #CCF;
+	background-image: linear-gradient(to right, #CCF , #008);}
+
+	.skin_title_4
+	{color: #FF0;
+	text-shadow: 1px 1px #000;
+	background-color: #CCF;
+	background-image: none;}
+
+	.skin_title_4:hover
+	{background-image: none;}
+	
+	.skin_corps_5
+	{color: #00F;
+	text-shadow: 1px 1px #000;
+	background-color: #FFC;
+	background-image: linear-gradient(to right, #FFC , #880);}
+
+	.skin_title_5
+	{color: #00F;
+	text-shadow: 1px 1px #000;
+	background-color: #FFC;
+	background-image: none;}
+
+	.skin_title_5:hover
+	{background-image: none;}
+	
+	.skin_corps_6
+	{color: #0F0;
+	text-shadow: 1px 1px #000;
+	background-color: #FCF;
+	background-image: linear-gradient(to right, #FCF , #808);}
+
+	.skin_title_6
+	{color: #0F0;
+	text-shadow: 1px 1px #000;
+	background-color: #FCF;
+	background-image: none;}
+
+	.skin_title_6:hover
+	{background-image: none;}
+	
+	.skin_corps_7
+	{color: #F00;
+	text-shadow: 1px 1px #000;
+	background-color: #CFF;
+	background-image: linear-gradient(to right, #CFF , #088);}
+
+	.skin_title_7
+	{color: #F00;
+	text-shadow: 1px 1px #000;
+	background-color: #CFF;
+	background-image: none;}
+
+	.skin_title_7:hover
+	{background-image: none;}
+	
+	.skin_corps_8
+	{color: #FFF;
+	text-shadow: 1px 1px #000;
+	background-color: #F88;
+	background-image: linear-gradient(to left, #FF8 5%, #88F, #8F8, #F8F, #8FF, #F88);}
+
+	.skin_title_8
+	{color: #FFF;
+	text-shadow: 1px 1px #000;
+	background-color: #F88;
+	background-image: none;}
+
+	.skin_title_8:hover
+	{background-image: none;}
+	
+/* God of Extortion - end */
+
+/* Statistics - start */
+#corps_statistics
+{overflow: auto;}
+
+#title_statistics
+{top: 410px;}
+
+.skin_corps_statistics
+{color: #FFA0B4;
+text-shadow: 1px 1px #000;
+background-color: #664400;
+background-image: linear-gradient(to right, #FFF, #FFC0CB);}
+
+.skin_title_statistics
+{color: #FFA0B4;
+text-shadow: 1px 1px #000;
+background-color: #FFF;
+background-image: none;}
+
+.skin_title_statistics:hover
+{background-image: none;}
+/* Statistics - end */
+
+/* Encyclopedia - start */
+#corps_encyclopedia
+{}
+
+#title_encyclopedia
+{top: 473px;}
+
+.skin_corps_encyclopedia
+{color: #e6e600;
+text-shadow: 1px 1px #000;
+background-color: #664400;
+background-image: linear-gradient(to right, #664400 , #AA6600);}
+
+.skin_title_encyclopedia
+{color: #e6e600;
+text-shadow: 1px 1px #000;
+background-color: #664400;
+background-image: none;}
+
+.skin_title_encyclopedia:hover
+{background-image: none;}
+
+#main_buttons_encyclopedia
+{line-height: 200%;}
+
+#secondary_buttons_encyclopedia
+{line-height: 200%;}
+
+#displayed_content_encyclopedia
+{height: 320px;
+overflow: auto;}
+/* Encyclopedia - end */
+
+/* Settings - start */
+#corps_settings
+{}
+
+#title_settings
+{top: 536px;}
+
+.skin_corps_settings
+{color: #A2A;
+text-shadow: 1px 1px #000;
+background-color: #DDD;
+background-image: linear-gradient(to right, #DDD , #777);}
+
+.skin_title_settings
+{color: #A2A;
+text-shadow: 1px 1px #000;
+background-color: #DDD;
+background-image: none;}
+
+.skin_title_settings:hover
+{background-image: none;}
+
+#patch_notes_window
+{position: absolute;
+top: 20px;
+left: 15px;
+width: 450px;
+height: 450px;
+padding: 5px;
+border-radius: 10px;
+border: 5px solid;
+border-color: #add8e6;
+background-color: #8AA5B3;
+background-image: linear-gradient(to bottom right, #FFF, #8AA5B3);
+overflow: auto;}
+
+#main_title_patch_notes
+{font-size:30px;
+font-weight:bold;}
+
+.title_patch
+{font-size:18px;
+font-style:italic;}
+
+#start_over
+{position: absolute;
+bottom: 5px;
+right: 5px;}
+
+#title_screen
+{position: absolute;
+top: 5px;
+right: 5px;}
+
+#transition_human_world_screen
+{display: none;
+position: absolute;
+top: 40px;
+right: 5px;}
+
+#save_txt
+{position: absolute;
+top: 75px;
+right: 5px;}
+
+#load_txt
+{position: absolute;
+top: 110px;
+right: 5px;}
+
+#toggle_tutorial
+{position: absolute;
+bottom: 5px;
+right: 5px;
+width: auto;} /* necessary to counter the "round_button "style that sets the width to 30 */
+
+#toggle_unlocked_buttons
+{display: none;
+position: absolute;
+top: 180px;
+right: 5px;}
+
+#add_1_hour
+{position: absolute;
+top: 215px;
+right: 5px;}
+
+#add_1_week
+{position: absolute;
+top: 250px;
+right: 5px;}
+
+#change_music_button
+{position: absolute;
+top: 285px;
+right: 5px;}
+
+#credits_button
+{position: absolute;
+top: 320px;
+right: 5px;}
+
+#unlock_button_tooltip
+{margin-left: -71px;}
+
+#statistics_table
+{text-align: left;
+overflow: auto;}
+
+#total_artworks_destroyed_stats_displayer
+{display: none;}
+
+#total_ruin_everything_stats_displayer
+{display: none;}
+
+/* Settings - end */
+
+
+
+/* Intro - start */
+#corps_intro
+{width: 800px;
+height: 600px;
+padding: 5px;
+position: absolute;
+margin-bottom: 20px;
+color: #D0E0FF;
+background-color: #F3F7FF;
+background-image: radial-gradient(circle, green,red, yellow);
+background-image: url("Images/Intro_background.jpg");
+font-weight: bold;
+font-family:verdana;}
+
+#title_intro
+{position: relative;
+text-align: center;
+color: #50A0FF;
+text-shadow: 2px 2px #000;
+font-size: 48px;
+top: -7px;}
+
+#text_intro
+{text-align: center;
+text-shadow: 1px 1px #000;}
+
+#button_intro
+{color: #F00;
+background-color: #FFF7F7;
+background-image: none;
+width: 300px;
+height:100px;
+font-weight: bold;
+font-size: 18px;}
+
+#initial_mute_button
+{position: relative;
+top: 48px;
+left: -4px;
+padding: 3px;
+background-color: #FFF7F7;
+background-image: none;
+display: none;}
+
+#note_intro
+{text-align: center;
+text-shadow: 1px 1px #009900;}
+
+#warning
+{position: absolute;
+left: 10px;
+bottom: 10px;
+text-shadow: 1px 1px #009900;}
+
+#version
+{position: absolute;
+right: 10px;
+bottom: 10px;
+text-shadow: 1px 1px #009900;}
+/* Intro - end */
+
+/* transition_human_world - start */
+#corps_transition_human_world
+{display: none;
+width: 800px;
+height: 600px;
+padding: 5px;
+position: absolute;
+margin-bottom: 20px;
+color: #D0E0FF;
+background-color: #F3F7FF;
+background-image: radial-gradient(circle, pink, purple, grey);
+background-image: url("Images/Transition_background.jpg");
+font-weight: bold;
+font-family:verdana;}
+
+#title_transition_human_world
+{position: relative;
+text-align: center;
+color: #50A0FF;
+text-shadow: 2px 2px #000;
+font-size: 48px;
+top: -7px;}
+
+#text_transition_human_world
+{text-align: center;
+text-shadow: 1px 1px #000099;}
+
+#button_transition_human_world
+{color: #F00;
+background-color: #FFF7F7;
+background-image: none;
+width: 300px;
+height:100px;
+font-weight: bold;
+font-size: 18px;}
+
+#note_transition_human_world
+{text-align: center;
+text-shadow: 1px 1px #009900;}
+/* transition_human_world - end */
+
+/* End game - start */
+#corps_end_screen
+{width: 800px;
+height: 600px;
+padding: 5px;
+position: absolute;
+margin-bottom: 20px;
+color: #000;
+background-color: #F3F7FF;
+background-image: radial-gradient(circle, white 40%, yellow);
+background-image: url("Images/End_game_background.jpg");
+font-weight: bold;
+font-family:verdana;
+z-index: -1;}
+
+#title_end
+{position: relative;
+text-align: center;
+color: #A40;
+text-shadow: 2px 2px #000;
+font-size: 48px;
+top: -7px;}
+
+#text_end
+{text-align: center;
+color: #D70;
+text-shadow: 1px 1px #000;}
+
+#button_end
+{color: #999;
+background-color: #FFF7F7;
+background-image: none;
+width: 300px;
+height:100px;
+font-weight: bold;
+font-size: 18px;}
+
+#note_end
+{text-align: center;
+text-shadow: 1px 1px #009900;}
+/* End game - end */
